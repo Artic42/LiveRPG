@@ -75,4 +75,32 @@ Set of action that can be run on the database, for editing the information
   - Edit Known
   - Edit About
   - Edit Description
-  
+
+## Consults
+
+Set of consults that can be run on the database, for reading the information
+
+### Character consults
+
+- List all characters
+- List characters characteristics
+- List characters objectives
+- List characters lose conditions
+- List character background
+- List character player
+- List entire character
+- List character name
+
+### Event consults
+
+- List all events
+- List event description
+- List event flags
+- List event activated
+- List event redirect
+
+### Information consults
+
+- List all entry of Known Characters
+- List all entry of About Characters
+- List description of Known Character About Character entry
