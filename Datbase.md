@@ -8,22 +8,23 @@ The database will be compose of three tables, one for characters, one for events
 - ¦ -
 ColumnName ¦ Data Type
 - ¦ -
+__CharacterID__ ¦ Integer
 Name ¦ Text
 Player ¦ Text
 Strength ¦ Integer
 Medicine ¦ Integer
 Hacking ¦ Integer
 Background ¦ Text
-Main Objective ¦ Text
-Secondary Objective ¦ Text
-Lose condition ¦ Text
+MainObjective ¦ Text
+SecondObjective ¦ Text
+LoseCondition ¦ Text
 
 ## Events table
 
 - ¦ -
 ColumnName ¦ Data Type
 -- ¦ --
-Event ID ¦ Integer
+__Event ID__ ¦ Integer
 Description ¦ Text
 Hackable ¦ Bool (Integer)
 Equipment ¦ Bool (Integer)
@@ -37,6 +38,6 @@ RedirectID ¦ Integer
 - ¦ -
 ColumnName ¦ Data Type
 -- ¦ --
-AboutCharacter ¦ Text
-KnownCharacter ¦ Text
+AboutCharacter ¦ Integer
+KnownCharacter ¦ Integer
 Description ¦ Text
