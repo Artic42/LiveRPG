@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "none"
+name = "databaseManager"
 version = "0.1"
 description = ""
 authors = ["Iñaki Arrondo <main@artic42.com>"]
@@ -9,7 +9,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 articlib = "^0.2.1"
-requests = "^2.32.3"
 
 
 [build-system]
