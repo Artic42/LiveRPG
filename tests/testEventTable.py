@@ -39,18 +39,28 @@ def test11_13():
     
 def test14():
     eventActions.editDescription("test.db", 2, "Description2")
-    eventActions.editFlags("test.db", 2, 1, 2, 3, 4)
+    eventActions.editFlags("test.db", 2, 1, 0, 1, 0)
     eventActions.setActivated("test.db", 2)
     eventActions.resetActivated("test.db", 2)
     eventActions.editRedirectID("test.db", 2, 3)
     test.testIfTrue(True, "Edit event")
+    eventActions.setActivated("test.db", 2)
     
 def test15():
-    eventActions.editFullEvent("test.db", 1, "Description", 1, 2, 3, 4, 0, 2)
+    eventActions.editFullEvent("test.db", 1, "Description1", 1, 2, 3, 4, 0, 2)
     test.testIfTrue(True, "Edit full event")
 
 def test21_29():
-    pass
+    test.testIfEqual([1,2], eventConsults.getAllIDs("test.db"), "Get all IDs")
+    test.testIfEqual("Description2", eventConsults.getEventDescription("test.db", 2), "Get description")
+    test.testIfTrue(eventConsults.getEventActivated("test.db", 2), "Get activated")
+    test.testIfEqual(3, eventConsults.getEventRedirectID("test.db", 2), "Get redirect ID")
+    test.testIfTrue(eventConsults.getEventHack("test.db", 2), "Get hack")
+    test.testIfFalse(eventConsults.getEventEquip("test.db", 2), "Get equip")
+    test.testIfEqual("Description1", eventConsults.getEventDescription("test.db", 1), "Get description")
+    test.testIfTrue(eventConsults.getEventActivated("test.db", 2), "Get activated")
+    test.testIfEqual(0, eventConsults.getEventWait("test.db", 2), "Get wait")
+    
 
 
 if __name__ == "__main__":
