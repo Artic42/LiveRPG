@@ -9,10 +9,11 @@ RUN apk add --no-cache poetry
 COPY pyproject.toml ./
 COPY poetry.lock ./
 COPY databaseManager ./databaseManager
-COPY API ./API
+COPY API.py ./API.py
+COPY routers ./routers 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY web /usr/share/nginx
-COPY startServer.sh /startServer.sh
+COPY scripts/linux/startServer.sh /startServer.sh
 COPY database/TestDatabase.db ./Database.db
 
 # Open ports

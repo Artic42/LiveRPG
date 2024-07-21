@@ -1,9 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
+import routers.characterActions as characterActions
 from fastapi.middleware.cors import CORSMiddleware
 import random
 
 app = FastAPI()
+
+app.include_router(characterActions.router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,28 +19,6 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
-
-@app.get("/respond1")
-def randomAnswer():
-    randomNumber = random.randint(1,2)
-    return {"code": randomNumber}
-
-# Character endpoints
-@app.get("/character/create")
-def createCharacter():
-    pass
-
-@app.get("/character/background")
-def characterBackground():
-    pass
-
-
-
-# Event endpoints
-
-
-# Information endpoints
-
 
 
 if __name__ == "__main__":
