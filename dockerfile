@@ -7,7 +7,6 @@ RUN apk add --no-cache poetry
 
 # Copy necessary files
 COPY pyproject.toml ./
-COPY poetry.lock ./
 COPY databaseManager ./databaseManager
 COPY API.py ./API.py
 COPY routers ./routers 
