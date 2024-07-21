@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
-        "articlib"
+        "articlib",
+        "fastapi",
+        "uvicorn"
     ]
 }
