@@ -64,5 +64,5 @@ def getCharacterFull(databasePath, characterID):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
     result = DBConnection.readEntryFiltered("Characters", "*", f"ID = {characterID}")
     DBConnection.commitClose()
-    return result
+    return result[0]
     

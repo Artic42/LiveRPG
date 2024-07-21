@@ -49,25 +49,25 @@ def test14():
     test.testIfTrue(True, "Edit character")
 
 def test15():
-    characterActions.editFullCharacter("test.db", 1, "Mary", "Alter", 1, 2, 3, "Door", "asdf", "neo", "orle")
+    characterActions.editFullCharacter("test.db", 1, "Name1", "Player1", 1, 2, 3, "Background1", "Main1", "Second1", "Lose1")
     test.testIfTrue(True, "Edit full character")
     
 def test21_29():
-    test.testIfEqual(characterConsults.getCharacterBackground("test.db", 1), "Door", "Get character background")
-    test.testIfEqual(characterConsults.getCharacterName("test.db", 1), "Mary", "Get character name")
-    test.testIfEqual(characterConsults.getCharacterPlayer("test.db", 1), "Alter", "Get character player")
+    test.testIfEqual(characterConsults.getCharacterBackground("test.db", 1), "Background1", "Get character background")
+    test.testIfEqual(characterConsults.getCharacterName("test.db", 1), "Name1", "Get character name")
+    test.testIfEqual(characterConsults.getCharacterPlayer("test.db", 1), "Player1", "Get character player")
     test.testIfEqual(characterConsults.getCharacterStrength("test.db", 1), 1, "Get character strength")
     test.testIfEqual(characterConsults.getCharacterMedicine("test.db", 1), 2, "Get character medicine")
     test.testIfEqual(characterConsults.getCharacterHacking("test.db", 1), 3, "Get character hacking")
-    test.testIfEqual(characterConsults.getCharacterMainObjective("test.db", 1), "asdf", "Get character main objective")
-    test.testIfEqual(characterConsults.getCharacterSecondaryObjective("test.db", 1), "neo", "Get character secondary objective")
-    test.testIfEqual(characterConsults.getCharacterLoseCondition("test.db", 1), "orle", "Get character lose condition")
+    test.testIfEqual(characterConsults.getCharacterMainObjective("test.db", 1), "Main1", "Get character main objective")
+    test.testIfEqual(characterConsults.getCharacterSecondaryObjective("test.db", 1), "Second1", "Get character secondary objective")
+    test.testIfEqual(characterConsults.getCharacterLoseCondition("test.db", 1), "Lose1", "Get character lose condition")
     test.testIfEqual(characterConsults.getAllIDs("test.db"), [(1,),(2,)], "Get all IDs")
-    test.testIfEqual(characterConsults.getCharacterFull("test.db", 1), [(1, 'Mary', 'Alter', 1, 2, 3, 'Door', 'asdf', 'neo', 'orle')], "Get full character")
+    test.testIfEqual(characterConsults.getCharacterFull("test.db", 1), (1, "Name1", "Player1", 1, 2, 3, "Background1", "Main1", "Second1", "Lose1"), "Get character full")
     
     
     
 if __name__ == "__main__":
-    shutil.copy("emptyDatabase.db", "test.db")
+    shutil.copy("database/emptyDatabase.db", "test.db")
     runTest()
     test.printResults()  

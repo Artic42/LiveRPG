@@ -13,6 +13,7 @@ COPY API ./API
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY web /usr/share/nginx
 COPY startServer.sh /startServer.sh
+COPY database/TestDatabase.db ./Database.db
 
 # Open ports
 EXPOSE 80
@@ -20,4 +21,4 @@ EXPOSE 8000
 
 # Start command
 CMD ["/startServer.sh"]
-#CMD ["nginx", "-g", "daemon off;"]
+

@@ -56,7 +56,7 @@ def test21_29():
     test.testIfEqual("Description1", infoConsults.getDescription("test.db", 1), "Get description")
 
 if __name__ == "__main__":
-    shutil.copy("emptyDatabase.db", "test.db")
+    shutil.copy("database/emptyDatabase.db", "test.db")
     runTest()
     test.printResults()
     

@@ -6,7 +6,7 @@ import shutil
 
 def runTest():
     print("Starting database manager tests")
-    shutil.copy("emptyDatabase.db", "test.db")
+    shutil.copy("database/emptyDatabase.db", "test.db")
     tests.testCharacterTable.runTest()
     tests.testEventTable.runTest()
     tests.testInformationTable.runTest()

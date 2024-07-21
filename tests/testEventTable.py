@@ -64,6 +64,6 @@ def test21_29():
 
 
 if __name__ == "__main__":
-    shutil.copy("emptyDatabase.db", "test.db")
+    shutil.copy("database/emptyDatabase.db", "test.db")
     runTest()
     test.printResults()  
