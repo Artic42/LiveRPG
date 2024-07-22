@@ -1,7 +1,5 @@
 
 # Install python dependencies
-poetry add /routers
-poetry add /databaseManager
 poetry install --no-root
 
 # Keep it running

@@ -4,7 +4,7 @@ def getAllIDs(databasePath):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
     result = DBConnection.readEntry("Characters", "ID")
     DBConnection.commitClose()
-    return result
+    return [i[0] for i in result]
 
 def getCharacterName(databasePath, characterID):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)

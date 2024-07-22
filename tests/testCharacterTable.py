@@ -62,7 +62,7 @@ def test21_29():
     test.testIfEqual(characterConsults.getCharacterMainObjective("test.db", 1), "Main1", "Get character main objective")
     test.testIfEqual(characterConsults.getCharacterSecondaryObjective("test.db", 1), "Second1", "Get character secondary objective")
     test.testIfEqual(characterConsults.getCharacterLoseCondition("test.db", 1), "Lose1", "Get character lose condition")
-    test.testIfEqual(characterConsults.getAllIDs("test.db"), [(1,),(2,)], "Get all IDs")
+    test.testIfEqual(characterConsults.getAllIDs("test.db"), [1,2], "Get all IDs")
     test.testIfEqual(characterConsults.getCharacterFull("test.db", 1), (1, "Name1", "Player1", 1, 2, 3, "Background1", "Main1", "Second1", "Lose1"), "Get character full")
     
     
