@@ -28,5 +28,11 @@ def errorIDAlreadyExists(message):
         "message": message
     }
     
+def errorWrongFormatBody(message):
+    return {
+        "status": 484,
+        "message": message
+    }
+    
 
 
