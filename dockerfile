@@ -7,6 +7,7 @@ RUN apk add --no-cache poetry
 
 # Copy necessary files
 COPY pyproject.toml ./
+#COPY poetry.lock ./
 COPY databaseManager ./databaseManager
 COPY API.py ./API.py
 COPY routers ./routers 
@@ -16,6 +17,9 @@ COPY scripts/linux/startServer.sh /startServer.sh
 COPY database/EmptyDatabase.db ./Database.db
 COPY database/EmptyDatabase.db ./ProductionDatabase.db
 COPY database/TestDatabase.db ./TestDatabase.db
+
+# build poetry enviroment
+#RUN poetry install --no-root
 
 # Open ports
 EXPOSE 80

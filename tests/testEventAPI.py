@@ -78,12 +78,12 @@ def test24():
     test.testIfEqual(response.json()["status"], 200,
                      "Edit event status")
     activate = eventRequest.readEventActivated(1)
-    test.testIfEqual(1, activate.json["activate"], "Read activate")
+    test.testIfEqual(1, activate.json()["activated"], "Read activate")
     response = eventRequest.deactivateEvent(1)
     test.testIfEqual(response.json()["status"], 200,
                      "Edit event status")
     activate = eventRequest.readEventActivated(1)
-    test.testIfEqual(0, activate.json["activate"], "Read activate")
+    test.testIfEqual(0, activate.json()["activated"], "Read activate")
 
 
 def test31():

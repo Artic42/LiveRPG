@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/event/read/{ID}")
 def readEvent(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs():
+    if ID not in eventConsults.getAllIDs("/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
@@ -25,7 +25,7 @@ def readEvent(ID: int, request: Request):
     return JSONResponse({
         "status": 200,
         "description": description,
-        "hacking": hacking,
+        "hack": hacking,
         "wait": wait,
         "activate": activate,
         "activated": activated,
@@ -37,7 +37,7 @@ def readEvent(ID: int, request: Request):
 @router.get("/event/readDescription/{ID}")
 def readDescription(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs():
+    if ID not in eventConsults.getAllIDs("/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     description = eventConsults.getEventDescription("/Database.db", ID)
@@ -51,7 +51,7 @@ def readDescription(ID: int, request: Request):
 @router.get("/event/readFlags/{ID}")
 def readFlags(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs():
+    if ID not in eventConsults.getAllIDs("/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     hacking = eventConsults.getEventHack("/Database.db", ID)
@@ -61,32 +61,38 @@ def readFlags(ID: int, request: Request):
 
     return JSONResponse({
         "status": 200,
-        "hacking": hacking,
+        "hack": hacking,
         "wait": wait,
         "activate": activate,
         "equip": equip
     })
 
 
-@router.get("/event/activated/{ID}")
+@router.get("/event/readActivated/{ID}")
 def getEventActivated(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs():
+    if ID not in eventConsults.getAllIDs("/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
     activated = eventConsults.getEventActivated("/Database.db", ID)
 
-    return JSONResponse({
-        "status": 200,
-        "activated": activated
-    })
+    if activated:
+        return JSONResponse({
+            "status": 200,
+            "activated": 1
+        })
+    else:
+        return JSONResponse({
+            "status": 200,
+            "activated": 0
+        })
 
 
 @router.get("/event/readRedirect/{ID}")
 def readRedirect(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs():
+    if ID not in eventConsults.getAllIDs("/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
