@@ -79,20 +79,37 @@ def editPlayer(ID: int, player: str):
     # Return success
     return responseHandling.success("Player edited")
 
-@router.put("/character/editCharacteristics/{ID}/strength{strength}/medicine{medicine}/hacking{hacking}")
-def editCharacteristics(ID:int,strength:int,medicine:int,hacking:int):
+@router.put("/character/editCharacteristics/{ID}")
+async def editCharacteristics(ID:int,request: Request):
     # Check for errors
     if ID < 0:
         return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    # Extract body as json
+    body = await request.json()
+    
+    # Check correct format of body
+    if "strength" not in body:
+        return responseHandling.errorWrongFormatBody("No strength specified")
+    if "medicine" not in body:
+        return responseHandling.errorWrongFormatBody("No medicine specified")
+    if "hacking" not in body:
+        return responseHandling.errorWrongFormatBody("No hacking specified")
+    
+    # Get values from body and check limits
+    strength = body["strength"]
+    medicine = body["medicine"]
+    hacking = body["hacking"]
+    
     if strength < 0 or strength > 5:
         return responseHandling.errorIncorrectParameter("Strength must be an integer between 0 and 5")
     if medicine < 0 or medicine > 5:
         return responseHandling.errorIncorrectParameter("Medicine must be an integer between 0 and 5")
     if hacking < 0 or hacking > 5:
         return responseHandling.errorIncorrectParameter("Hacking must be an integer between 0 and 5")
-    if ID not in characterConsults.getAllIDs("/Database.db"):
-        return responseHandling.errorIDNotPresent("ID not present")
-    
+        
     # Edit the characteristics
     characterActions.editCharacteristics("/Database.db", ID, strength, medicine, hacking)
     
