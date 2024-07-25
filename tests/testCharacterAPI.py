@@ -65,7 +65,7 @@ def test21():
     test.testIfEqual(response.json()["status"], 200, "Edit name status")
     name = characterRequest.readName(1)
     test.testIfEqual(name.json()["name"], "NewName1", "Read name")
-    
+
 
 def test22():
     response = characterRequest.editPlayer(1, "NewPlayer1")
@@ -154,4 +154,4 @@ if __name__ == "__main__":
     request.activateTestMode()
     runTest()
     test.printResults()
-    request.deactivateTestMode()  
+    request.deactivateTestMode()
