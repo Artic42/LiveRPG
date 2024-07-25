@@ -18,20 +18,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/about")
 def read_root():
     return {"Version": "0.1",
-            "AppName" : "LiveRPG",
-            "Description": "This is the API for the LiveRPG project. It is a project to create a live RPG game using FastAPI and WebSockets."}
+            "AppName": "LiveRPG",
+            "Description": """This is the API for the LiveRPG project.
+            It is a project to create a live RPG game using
+            FastAPI and WebSockets."""}
+
 
 @app.post("/activateTestMode")
 def activateTestMode():
     shutil.copyfile("Database.db", "ProductionDatabase.db")
     shutil.copyfile("TestDatabase.db", "Database.db")
-    
+
+
 @app.post("/deactivateTestMode")
 def deactivateTestMode():
     shutil.copyfile("ProductionDatabase.db", "Database.db")
-    
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
