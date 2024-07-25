@@ -13,7 +13,9 @@ COPY routers ./routers
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY web /usr/share/nginx
 COPY scripts/linux/startServer.sh /startServer.sh
-COPY database/TestDatabase.db ./Database.db
+COPY database/EmptyDatabase.db ./Database.db
+COPY database/EmptyDatabase.db ./ProductionDatabase.db
+COPY database/TestDatabase.db ./TestDatabase.db
 
 # Open ports
 EXPOSE 80

@@ -1,0 +1,146 @@
+from fastapi import APIRouter
+from fastapi import Request
+import routers.responseHandling as responseHandling
+import databaseManager.characterActions as characterActions
+import databaseManager.characterConsults as characterConsults
+
+router = APIRouter()
+
+@router.get("/characters")
+async def getCharacters(request: Request):
+    IDs = characterConsults.getAllIDs("/Database.db")
+    response = {"status": 200}
+    for ID in IDs:
+        name = characterConsults.getCharacterName("/Database.db",ID)
+        response[ID] = name
+    return response
+
+@router.get("/character/{ID}")
+async def getCharacter(request: Request, ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    name = characterConsults.getCharacterName("/Database.db",ID)
+    player = characterConsults.getCharacterPlayer("/Database.db",ID)
+    strength = characterConsults.getCharacterStrength("/Database.db",ID)
+    medicine = characterConsults.getCharacterMedicine("/Database.db",ID)
+    hacking = characterConsults.getCharacterHacking("/Database.db",ID)
+    background = characterConsults.getCharacterBackground("/Database.db",ID)
+    mainObjective = characterConsults.getCharacterMainObjective("/Database.db",ID)
+    secondaryObjective = characterConsults.getCharacterSecondaryObjective("/Database.db",ID)
+    loseCondition = characterConsults.getCharacterLoseCondition("/Database.db",ID)
+    
+    return {"status": 200,
+            "ID": ID,
+            "Name": name,
+            "Player": player,
+            "Strength": strength,
+            "Medicine": medicine,
+            "Hacking": hacking,
+            "Background": background,
+            "MainObjective": mainObjective,
+            "SecondaryObjective": secondaryObjective,
+            "LoseCondition": loseCondition}
+    
+@router.get("/character/{ID}/name")
+async def getCharacterName(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "name": characterConsults.getCharacterName("/Database.db",ID)}
+    
+@router.get("/character/{ID}/player")
+async def getCharacterPlayer(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "player": characterConsults.getCharacterPlayer("/Database.db",ID)}
+    
+@router.get("/character/{ID}/strength")
+async def getCharacterStrength(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "strength": characterConsults.getCharacterStrength("/Database.db",ID)}
+    
+@router.get("/character/{ID}/medicine")
+async def getCharacterMedicine(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "medicine": characterConsults.getCharacterMedicine("/Database.db",ID)}
+    
+@router.get("/character/{ID}/hacking")
+async def getCharacterHacking(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "hacking": characterConsults.getCharacterHacking("/Database.db",ID)}
+    
+@router.get("/character/{ID}/background")
+async def getCharacterBackground(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "background": characterConsults.getCharacterBackground("/Database.db",ID)}
+    
+@router.get("/character/{ID}/mainObjective")
+async def getCharacterMainObjective(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "mainObjective": characterConsults.getCharacterMainObjective("/Database.db",ID)}
+    
+@router.get("/character/{ID}/secondaryObjective")
+async def getCharacterSecondaryObjective(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "secondaryObjective": characterConsults.getCharacterSecondaryObjective("/Database.db",ID)}
+    
+@router.get("/character/{ID}/loseCondition")
+async def getCharacterLoseCondition(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter("ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+    
+    return {"status": 200,
+            "loseCondition": characterConsults.getCharacterLoseCondition("/Database.db",ID)}
+    

@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.10"
 articlib = "^0.2.1"
 fastapi = "^0.111.1"
+requests = "^2.32.3"
 
 
 [build-system]
