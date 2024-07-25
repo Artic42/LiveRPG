@@ -89,13 +89,12 @@ def editRedirectEvent(ID, redirectID):
     return response
 
 
-def editFullEvent(ID, name, description, hack,
+def editFullEvent(ID, description, hack,
                   equip, activate, wait,
                   activated, redirectID):
     url = f"http://localhost:8000/event/editFullEvent/{ID}"
 
-    payload = json.dumps({"name": name,
-                          "description": description,
+    payload = json.dumps({"description": description,
                           "hack": hack,
                           "equip": equip,
                           "activate": activate,
