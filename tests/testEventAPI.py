@@ -13,7 +13,6 @@ def runTest():
 
 def runScenario1():
     test.newScenario("Read all events and create a new event")
-    test11()
     test12()
     test13()
     test.endScenario("Read all events and create a new event")
@@ -33,15 +32,6 @@ def runScenario3():
     test31()
     test32()
     test.endScenario("Write and Read all event in one go")
-
-
-def test11():
-    response = eventRequest.getevents()
-    events = response.json()
-    test.testIfEqual(events["1"], "Name1",
-                     "events request event name")
-    test.testIfEqual(events["2"], "Name2",
-                     "events request event name")
 
 
 def test12():

@@ -2,6 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
+import routers.eventActions as eventActions
+import routers.eventConsults as eventConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 
@@ -9,6 +11,8 @@ app = FastAPI()
 
 app.include_router(characterActions.router)
 app.include_router(characterConsults.router)
+app.include_router(eventConsults.router)
+app.include_router(eventActions.router)
 
 app.add_middleware(
     CORSMiddleware,
