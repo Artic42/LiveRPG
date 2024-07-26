@@ -1,3 +1,5 @@
+# Start Nginx
+nginx
 
 # Install python dependencies
 poetry install --no-root
