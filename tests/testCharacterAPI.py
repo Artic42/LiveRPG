@@ -60,8 +60,6 @@ def test13():
 
 def test21():
     response = characterRequest.editName(1, "NewName1")
-    print(response)
-    print(response.json())
     test.testIfEqual(response.json()["status"], 200, "Edit name status")
     name = characterRequest.readName(1)
     test.testIfEqual(name.json()["name"], "NewName1", "Read name")
