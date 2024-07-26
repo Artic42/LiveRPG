@@ -135,7 +135,7 @@ async def editRedirectID(ID: int, request: Request):
 
     # Edit redirect Id on database
     eventActions.editRedirectID("/Database.db", ID, body["redirectID"])
-    
+
     return responseHandling.success("Redirect ID updated")
 
 

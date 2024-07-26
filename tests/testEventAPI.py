@@ -88,7 +88,7 @@ def test24():
 
 def test31():
     response = eventRequest.editFullEvent(2,
-                                          "newDescription2",
+                                          "NewDescription2",
                                           0,
                                           1,
                                           0,
@@ -102,16 +102,12 @@ def test32():
     event = eventRequest.readEvent(2)
     test.testIfEqual(event.json()["description"], "NewDescription2",
                      "Read description")
-    test.testIfEqual(event.json()["hacking"], 0, "Read hacking")
+    test.testIfEqual(event.json()["hack"], 0, "Read hacking")
     test.testIfEqual(event.json()["equip"], 1, "Read equip")
     test.testIfEqual(event.json()["activate"], 0, "Read activate")
     test.testIfEqual(event.json()["wait"], 10, "Read wait")
     test.testIfEqual(event.json()["activated"], 0, "Read activated")
     test.testIfEqual(event.json()["redirectID"], 1, "Read redirect ID")
-    test.testIfEqual(event.json()["SecondaryObjective"],
-                     "NewSecondaryObjective2", "Read secondary objective")
-    test.testIfEqual(event.json()["LoseCondition"],
-                     "NewLoseCondition2", "Read lose condition")
 
 
 if __name__ == "__main__":

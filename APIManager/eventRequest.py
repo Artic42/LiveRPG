@@ -95,7 +95,7 @@ def editFullEvent(ID, description, hack,
     url = f"http://localhost:8000/event/editEvent/{ID}"
 
     payload = json.dumps({"description": description,
-                          "hacking": hack,
+                          "hack": hack,
                           "equip": equip,
                           "activate": activate,
                           "wait": wait,
