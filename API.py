@@ -4,6 +4,8 @@ import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
 import routers.eventActions as eventActions
 import routers.eventConsults as eventConsults
+import routers.informationActions as informationActions
+import routers.informationConsults as informationConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 
@@ -13,6 +15,9 @@ app.include_router(characterActions.router)
 app.include_router(characterConsults.router)
 app.include_router(eventConsults.router)
 app.include_router(eventActions.router)
+app.include_router(informationActions.router)
+app.include_router(informationConsults.router)
+
 
 app.add_middleware(
     CORSMiddleware,
