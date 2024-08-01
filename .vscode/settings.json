@@ -3,6 +3,7 @@
         "articlib",
         "fastapi",
         "pydantic",
+        "Royale",
         "uvicorn"
     ]
 }
