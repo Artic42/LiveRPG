@@ -21,6 +21,12 @@ function sendCharacterChange() {
     console.log(JSON.stringify(characterData, null, 2));
 }
 
+function readCharacter() {
+    // Get values from database
+    // Put values in the form
+}
+
 
 // Add event listener to the buttons
 document.getElementById("buttonSave").addEventListener("click", sendCharacterChange);
+document.getElementById("buttonLoad").addEventListener("click", readCharacter);
