@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/mainStyle.css">
+  <title>Casino Royale</title>
+</head>
+<body>
+    <h1>Editar Personaje</h1>
+    <div id="fields">
+        <input type="number" id="characterID"><button class="statButton" id="buttonSearch">BUSCAR</button>
+        <p id="Character ID">ID: 3000</p>
+        <form id="characterForm"><table><tbody>
+            <tr><td>Nombre: </td><td><input type="text" name="name" id="name" required></td></tr>
+            <tr><td>Salud: </td><td><input type="number" name="health" id="health" required></td></tr>
+            <tr><td>Fuerza: </td><td><input type="number" name="strength" id="strength" required></td></tr>
+            <tr><td>Hackeo: </td><td><input type="number" name="hacking" id="hacking" required></td></tr>
+            <tr><td>Medicina: </td><td><input type="number" name="medicine" id="medicine" required></td></tr>
+        </tbody></table></form>
+    </div>
+    <div id="background">
+        <p>Background</p>
+        <textarea id="backgroundTextInput" cols="30" required></textarea>
+    </div>
+    <div id="buttons">
+        <button class="darkButton" id="buttonSave">GUARDAR</button>
+        <a href="../index.html"><button class="darkButton" id="backButton">ATRAS</button></a>
+    </div>
+</body>
+<script src="../js/editCharacter.js"></script>
+</html>
