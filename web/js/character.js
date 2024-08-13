@@ -1,5 +1,5 @@
-var hostname = window.location.hostname;
-var playerID = 1;
+const hostname = window.location.hostname;
+const playerID = 1;
 
 function readCharacter() {
     const characterID = 1;
