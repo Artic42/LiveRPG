@@ -34,8 +34,7 @@ def editCharacteristics(databasePath, characterID,
 
 def editBackground(databasePath, characterID, background):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
-    DBConnection.updateEntry("Characters", "Background", background,
-                             f"ID = {characterID}")
+    DBConnection.updateEntry("Characters", "Background", background, f"ID = {characterID}")
     DBConnection.commitClose()
 
 

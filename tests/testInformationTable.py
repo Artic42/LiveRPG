@@ -50,11 +50,11 @@ def test14():
     infoActions.editKnownCharacter("test.db", 2, 1)
     infoActions.editAboutCharacter("test.db", 2, 0)
     test.testIfTrue(True, "Edit information")
-    infoActions.editFullInformation("test.db", 1, 1, 0, "Description1")
+    infoActions.editFullInformation("test.db", 1, 1, 2, "Description1")
 
 
 def test15():
-    infoActions.editFullInformation("test.db", 2, 1, 0, "Description2")
+    infoActions.editFullInformation("test.db", 2, 1, 3, "Description2")
     test.testIfTrue(True, "Edit full information")
 
 
@@ -64,10 +64,12 @@ def test21_29():
                      "Get description")
     test.testIfEqual(1, infoConsults.getKnownCharacter("test.db", 2),
                      "Get known character")
-    test.testIfEqual(0, infoConsults.getAboutCharacter("test.db", 2),
+    test.testIfEqual(3, infoConsults.getAboutCharacter("test.db", 2),
                      "Get about character")
     test.testIfEqual("Description1", infoConsults.getDescription("test.db", 1),
                      "Get description")
+    IDs = infoConsults.getIDsForKnownCharacter("test.db", 1)
+    test.testIfEqual([1, 2], IDs, "Get IDs for known character")
 
 
 if __name__ == "__main__":

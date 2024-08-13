@@ -37,3 +37,12 @@ def getFullInformation(databasePath, ID):
     result = DBConnection.readEntryFiltered("Information", "*", f"ID = {ID}")
     DBConnection.commitClose()
     return result[0]
+
+
+def getIDsForKnownCharacter(databasePath, knownCharacter):
+    DBConnection = sqliteEngine.sqliteEngine(databasePath)
+    result = DBConnection.readEntryFiltered(
+        "Information", "ID",
+        f"KnownCharacter = '{knownCharacter}'")
+    DBConnection.commitClose()
+    return [i[0] for i in result]

@@ -6,6 +6,7 @@
         "Hackeo",
         "pydantic",
         "Royale",
+        "sqlite",
         "uvicorn"
     ]
 }

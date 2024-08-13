@@ -7,6 +7,13 @@ import databaseManager.infoConsults as infoConsults
 router = APIRouter()
 
 
+@router.get("/information/readKnownsCharacters/{character}")
+def readKnownsCharacters(character: int):
+    # Get all IDs knows to characters
+    knownIDs = infoConsults.getIDsForKnownCharacter("/Database.db", character)
+    return JSONResponse({"status": 200, "knownIDs": knownIDs})
+
+
 @router.get("/information/readKnown/{ID}")
 def readKnown(ID: int):
     # Check if the ID exists
