@@ -2,16 +2,29 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import routers.responseHandling as responseHandling
 import databaseManager.infoConsults as infoConsults
+import databaseManager.characterConsults as characterConsults
 
 
 router = APIRouter()
 
 
-@router.get("/information/readKnownsCharacters/{character}")
+@router.get("/information/readKnownCharacters/{character}")
 def readKnownsCharacters(character: int):
     # Get all IDs knows to characters
     knownIDs = infoConsults.getIDsForKnownCharacter("/Database.db", character)
     return JSONResponse({"status": 200, "knownIDs": knownIDs})
+
+
+@router.get("/information/readAboutName/{ID}")
+def readAboutName(ID: int):
+    # Check if the ID exists
+    if ID not in infoConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not found")
+
+    # Get the about character
+    aboutID = infoConsults.getAboutCharacter("/Database.db", ID)
+    name = characterConsults.getCharacterName("/Database.db", aboutID)
+    return JSONResponse({"status": 200, "name": name})
 
 
 @router.get("/information/readKnown/{ID}")
