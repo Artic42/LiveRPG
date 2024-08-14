@@ -5,7 +5,7 @@ body {
     margin: auto;
     padding: 0;
     margin-top: 50px;
-    width: 250px;
+    width: 500px;
     text-align: center;
 }
 
@@ -102,4 +102,14 @@ h1 {
     height: 40px;
 }
 
-
+#secondaryObjective{
+    background-color: #000000;
+    border-color: #00f721;
+    color: #00f721;
+    font-family: Arial, sans-serif;
+    text-align: center;  
+    margin: 10px;
+    padding: 10px;
+    border-top: 1px solid #00f721;
+    border-bottom: 1px solid #00f721; 
+}
