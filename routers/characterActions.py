@@ -294,9 +294,9 @@ async def editFullCharacter(ID: int, request: Request):
                 "No lose condition specified"))
 
     # Get values from body and check limits
-    strength = body["strength"]
-    medicine = body["medicine"]
-    hacking = body["hacking"]
+    strength = int(body["strength"])
+    medicine = int(body["medicine"])
+    hacking = int(body["hacking"])
 
     if strength < 0 or strength > 5:
         return JSONResponse(

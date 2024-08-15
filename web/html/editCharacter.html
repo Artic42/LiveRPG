@@ -11,9 +11,10 @@
     <h1>Editar Personaje</h1>
     <div id="fields">
         <input type="number" id="characterID"><button class="statButton" id="buttonLoad">CARGAR</button>
-        <p id="Character ID">ID: 3000</p>
+        <p id="characterIDText">ID: -</p>
         <form id="characterForm"><table><tbody>
             <tr><td>Nombre: </td><td><input type="text" name="name" id="name" required></td></tr>
+            <tr><td>Jugador: </td><td><input type="text" name="jugador" id="player" required></td></tr>
             <tr><td>Salud: </td><td><input type="number" name="health" id="health" required></td></tr>
             <tr><td>Fuerza: </td><td><input type="number" name="strength" id="strength" required></td></tr>
             <tr><td>Hackeo: </td><td><input type="number" name="hacking" id="hacking" required></td></tr>
@@ -23,6 +24,18 @@
     <div id="background">
         <p>Background</p>
         <textarea id="backgroundTextInput" class="textInput" cols="30" required></textarea>
+    </div>
+    <div id="mainObjective">
+        <p>Objetivo Principal</p>
+        <textarea id="mainObjectiveTextInput" class="textInput" cols="30" required></textarea>
+    </div>
+    <div id="secondaryObjective">
+        <p>Objetivo Secundario</p>
+        <textarea id="secondaryObjectiveTextInput" class="textInput" cols="30" required></textarea>
+    </div>
+    <div id="loseCondition">
+        <p>Condiciones de Derrota</p>
+        <textarea id="loseConditionTextInput" class="textInput" cols="30" required></textarea>
     </div>
     <div id="buttons">
         <button class="darkButton" id="buttonSave">GUARDAR</button>
