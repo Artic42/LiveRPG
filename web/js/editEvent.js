@@ -1,14 +1,15 @@
 const hostname = window.location.hostname;
-var characterID = 0;
+var eventID = 0;
 
 function sendEventChange() { 
     // Get form values
-    const description = document.getElementById('description').value;
-    const activate = document.getElementById('activate').value;
-    const hack = document.getElementById('hack').value;
-    const equip = document.getElementById('equip').value;
+    const description = document.getElementById('descriptionTextInput').value;
+    const activate = readCheckbox('activate');
+    const hack = readCheckbox('hack');
+    const equip = readCheckbox('equip');
     const wait = document.getElementById('wait').value;
-    const activated = document.getElementById('activated').value;
+    const activated = readCheckbox('activated');
+    const redirectID = document.getElementById('redirectID').value;
 
     // Create a JSON object with the form values
     const eventData = {
@@ -17,8 +18,64 @@ function sendEventChange() {
         hack: hack,
         equip: equip,
         wait: wait,
-        activated: activated
+        activated: activated,
+        redirectID: redirectID
     };
+
+    console.log(eventData);
+
+    fetch(`http://${hostname}:8000/event/editEvent/${eventID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(eventData),
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
 }
 
+function readEvent() {
+    eventID = document.getElementById('eventID').value;
+    document.getElementById('EventIDNumber').innerText = "ID: " + eventID;
 
+    fetch(`http://${hostname}:8000/event/read/${eventID}`)
+    .then(response => response.json())
+    .then(json => {
+        // Display event data
+        console.log(json);
+        document.getElementById('descriptionTextInput').value = json.description;
+        handleCheckbox('activate', json.activate);
+        handleCheckbox('hack', json.hack);
+        handleCheckbox('equip', json.equip);
+        document.getElementById('wait').value = json.wait;
+        handleCheckbox('activated', json.activated);
+        document.getElementById('redirectID').value = json.redirectID;
+    });
+}
+
+function activateCheckbox(id) {
+    const checkbox = document.getElementById(id);
+    checkbox.checked = true;
+}
+
+function deactivateCheckbox(id) {
+    const checkbox = document.getElementById(id);
+    checkbox.checked = false;
+}
+
+function handleCheckbox(id, value) {
+    if (value == 1) {
+        activateCheckbox(id);
+    } else {
+        deactivateCheckbox(id);
+    }
+}
+
+function readCheckbox(id) {
+    const checkbox = document.getElementById(id);
+    return checkbox.checked ? 1 : 0;
+}
+// Add event listener to the buttons
+document.getElementById("buttonSave").addEventListener("click", sendEventChange);
+document.getElementById("buttonLoad").addEventListener("click", readEvent);

@@ -18,15 +18,17 @@
             <tr><td>Equip </td><td><input type="checkbox" name="equip" id="equip"></td></tr>
             <tr><td>Wait </td><td><input type="number" name="wait" id="wait"></td></tr>
             <tr><td>Activated </td><td><input type="checkbox" name="activated" id="activated"></td></tr>
+            <tr><td>Redirigir: </td><td><input type="text" name="redirectID" id="redirectID"></td></tr>
         </tbody></table></form>
     </div>
     <div id="description">
         <p>Description</p>
-        <textarea id="descriptionTextInput" class="textInput" cols="30" required></textarea>
+        <textarea id="descriptionTextInput" class="description" cols="30"></textarea>
     </div>
     <div id="buttons">
         <button class="darkButton" id="buttonSave">GUARDAR</button>
         <a href="controlPanel.html"><button class="darkButton" id="backButton">ATRÁS</button></a>
     </div>
 </body>
+<script src="../js/editEvent.js"></script>
 </html>
