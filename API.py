@@ -1,5 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi import UploadFile
+from fastapi import File
 from fastapi.responses import FileResponse
 import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
@@ -53,6 +55,13 @@ def deactivateTestMode():
 def downloadDatabase():
     return FileResponse("Database.db", filename="Database.db", media_type="application/octet-stream")
 
+
+@app.post("/uploadDatabase")
+async def upload_file(file: UploadFile = File(...)):
+    file_location = "/Database.db"
+    with open(file_location, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    return {"info": f"File '{file.filename}' saved as '{file_location}'"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
