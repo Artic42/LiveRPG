@@ -8,25 +8,23 @@
   <title>Casino Royale</title>
 </head>
 <body>
-    <h1>Editar Personaje</h1>
+    <h1>Editar Información</h1>
     <div id="fields">
-        <input type="number" id="eventID"><button class="statButton" id="buttonLoad">CARGAR</button>
-        <p id="Event ID">ID: 3000</p>
-        <form id="characterForm"><table><tbody>
-            <tr><td>Hack </td><td><input type="checkbox" name="hack" id="hack"></td></tr>
-            <tr><td>Activate </td><td><input type="checkbox" name="activate" id="activate"></td></tr>
-            <tr><td>Equip </td><td><input type="checkbox" name="equip" id="equip"></td></tr>
-            <tr><td>Wait </td><td><input type="number" name="wait" id="wait"></td></tr>
-            <tr><td>Activated </td><td><input type="checkbox" name="activated" id="activated"></td></tr>
+        <input type="number" id="informationID"><button class="statButton" id="buttonLoad">CARGAR</button>
+        <p id="InformationIDNumber">ID: -</p>
+        <form id="informationForm"><table><tbody>
+            <tr><td>Lo sabe: </td><td><input type="text" name="knownID" id="knownID"></td></tr>
+            <tr><td>Sobre: </td><td><input type="text" name="aboutID" id="aboutID"></td></tr>
         </tbody></table></form>
     </div>
     <div id="description">
-        <p>Description</p>
+        <p>Descripción</p>
         <textarea id="descriptionTextInput" class="textInput" cols="30" required></textarea>
     </div>
     <div id="buttons">
         <button class="darkButton" id="buttonSave">GUARDAR</button>
-        <a href="controlPanel.html"><button class="darkButton" id="backButton">ATRAS</button></a>
+        <a href="controlPanel.html"><button class="darkButton" id="backButton">ATRÁS</button></a>
     </div>
 </body>
+<script src="../js/editInformation.js"></script>
 </html>
