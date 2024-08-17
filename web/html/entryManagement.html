@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/mainStyle.css">
+  <title>Casino Royale</title>
+</head>
+<body>
+    <h1>Editar Información</h1>
+    <div id="select">
+        <select id="selectorDropdown">
+            <option value='character'>Character</option>
+            <option value='event'>Event</option>
+            <option value='information'>Information</option>
+            <option value='user'>User</option>
+        </select>        
+    </div>
+    <div id="form">
+        <form id="IDForm">
+            ID: <input type="text" name="ID" id="ID">
+        </form>
+    </div>
+    <div id="buttons">
+        <button class="darkButton" id="buttonCreate">CREAR</button>
+        <button class="darkButton" id="buttonDelete">BORRAR</button>
+        <a href="controlPanel.html"><button class="darkButton" id="backButton">ATRÁS</button></a>
+    </div>
+</body>
+<script src="../js/entryManagement.js"></script>
+</html>

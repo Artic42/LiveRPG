@@ -113,3 +113,11 @@ h1 {
     border-top: 1px solid #00f721;
     border-bottom: 1px solid #00f721; 
 }
+
+#IDForm{
+    margin: auto;
+    padding: 0;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

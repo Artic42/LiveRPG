@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
 import routers.eventActions as eventActions
@@ -46,6 +47,11 @@ def activateTestMode():
 @app.post("/deactivateTestMode")
 def deactivateTestMode():
     shutil.copyfile("ProductionDatabase.db", "Database.db")
+
+
+@app.get("/downloadDatabase")
+def downloadDatabase():
+    return FileResponse("Database.db", filename="Database.db", media_type="application/octet-stream")
 
 
 if __name__ == "__main__":
