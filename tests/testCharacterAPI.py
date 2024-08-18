@@ -73,6 +73,10 @@ def test22():
 
 
 def test23():
+    response = characterRequest.editHealth(1, 2)
+    test.testIfEqual(response.json()["status"], 200, "Edit health status")
+    health = characterRequest.readHealth(1)
+    test.testIfEqual(health.json()["health"], 2, "Read health")
     response = characterRequest.editCharacteristics(1, 1, 2, 3)
     test.testIfEqual(response.json()["status"], 200,
                      "Edit characteristics status")
@@ -123,7 +127,7 @@ def test27():
 def test31():
     response = characterRequest.editFullCharacter(2,
                                                   "NewName2",
-                                                  "NewPlayer2", 2, 3, 4,
+                                                  "NewPlayer2", 2, 2, 3, 4,
                                                   "NewBackground2",
                                                   "NewMainObjective2",
                                                   "NewSecondaryObjective2",
@@ -135,6 +139,7 @@ def test32():
     character = characterRequest.getFullCharacter(2)
     test.testIfEqual(character.json()["Name"], "NewName2", "Read name")
     test.testIfEqual(character.json()["Player"], "NewPlayer2", "Read player")
+    test.testIfEqual(character.json()["Health"], 2, "Read health")
     test.testIfEqual(character.json()["Strength"], 2, "Read strength")
     test.testIfEqual(character.json()["Medicine"], 3, "Read medicine")
     test.testIfEqual(character.json()["Hacking"], 4, "Read hacking")

@@ -27,6 +27,7 @@ async def getCharacter(request: Request, ID: int):
 
     name = characterConsults.getCharacterName("/Database.db", ID)
     player = characterConsults.getCharacterPlayer("/Database.db", ID)
+    health = characterConsults.getCharacterHealth("/Database.db", ID)
     strength = characterConsults.getCharacterStrength("/Database.db", ID)
     medicine = characterConsults.getCharacterMedicine("/Database.db", ID)
     hacking = characterConsults.getCharacterHacking("/Database.db", ID)
@@ -42,6 +43,7 @@ async def getCharacter(request: Request, ID: int):
             "ID": ID,
             "Name": name,
             "Player": player,
+            "Health": health,
             "Strength": strength,
             "Medicine": medicine,
             "Hacking": hacking,
@@ -75,6 +77,21 @@ async def getCharacterPlayer(ID: int):
 
     return {"status": 200,
             "player": characterConsults.getCharacterPlayer("/Database.db", ID)}
+
+
+@router.get("/character/{ID}/health")
+async def getCharacterHealth(ID: int):
+    # Check for errors
+    if ID < 0:
+        return responseHandling.errorIncorrectParameter(
+            "ID must be a positive integer")
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return responseHandling.errorIDNotPresent("ID not present")
+
+    health = characterConsults.getCharacterHealth("/Database.db", ID)
+
+    return {"status": 200,
+            "health": health}
 
 
 @router.get("/character/{ID}/strength")

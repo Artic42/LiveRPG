@@ -49,6 +49,7 @@ def test14():
     characterActions.editBackground("test.db", 2, "Background2")
     characterActions.editName("test.db", 2, "Name2")
     characterActions.editPlayer("test.db", 2, "Player2")
+    characterActions.editHealth("test.db", 2, 4)
     characterActions.editCharacteristics("test.db", 2, 4, 5, 6)
     characterActions.editMainObjective("test.db", 2, "Main2")
     characterActions.editSecondaryObjective("test.db", 2, "Second2")
@@ -57,7 +58,7 @@ def test14():
 
 
 def test15():
-    characterActions.editFullCharacter("test.db", 1, "Name1", "Player1",
+    characterActions.editFullCharacter("test.db", 1, "Name1", "Player1", 4,
                                        1, 2, 3, "Background1", "Main1",
                                        "Second1", "Lose1")
     test.testIfTrue(True, "Edit full character")
@@ -70,6 +71,8 @@ def test21_29():
                      "Name1", "Get character name")
     test.testIfEqual(characterConsults.getCharacterPlayer("test.db", 1),
                      "Player1", "Get character player")
+    test.testIfEqual(characterConsults.getCharacterHealth("test.db", 1),
+                     4, "Get character health")
     test.testIfEqual(characterConsults.getCharacterStrength("test.db", 1),
                      1, "Get character strength")
     test.testIfEqual(characterConsults.getCharacterMedicine("test.db", 1),
@@ -86,7 +89,7 @@ def test21_29():
     test.testIfEqual(
         characterConsults.getAllIDs("test.db"), [1, 2], "Get all IDs")
     test.testIfEqual(characterConsults.getCharacterFull("test.db", 1),
-                     (1, "Name1", "Player1", 1, 2, 3, "Background1", "Main1",
+                     (1, "Name1", "Player1", 4, 1, 2, 3, "Background1", "Main1",
                      "Second1", "Lose1"),
                      "Get character full")
 

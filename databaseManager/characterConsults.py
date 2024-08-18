@@ -24,6 +24,14 @@ def getCharacterPlayer(databasePath, characterID):
     return result[0][0]
 
 
+def getCharacterHealth(databasePath, characterID):
+    DBConnection = sqliteEngine.sqliteEngine(databasePath)
+    result = DBConnection.readEntryFiltered("Characters", "Health",
+                                            f"ID = {characterID}")
+    DBConnection.commitClose()
+    return result[0][0]
+
+
 def getCharacterStrength(databasePath, characterID):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
     result = DBConnection.readEntryFiltered("Characters", "Strength",

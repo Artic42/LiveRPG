@@ -52,6 +52,17 @@ def editPlayer(ID, player):
     return response
 
 
+def editHealth(ID, health):
+    url = f"http://localhost:8000/character/editHealth/{ID}"
+
+    payload = json.dumps({"health": health})
+    headers = {'Content-Type': 'application/json'}
+
+    response = requests.request("PUT", url, headers=headers, data=payload)
+
+    return response
+
+
 def editCharacteristics(ID, strength, medicine, hacking):
     url = f"http://localhost:8000/character/editCharacteristics/{ID}"
 
@@ -109,13 +120,14 @@ def editLoseCondition(ID, loseCondition):
     return response
 
 
-def editFullCharacter(ID, name, player, strength, medicine,
+def editFullCharacter(ID, name, player, health, strength, medicine,
                       hacking, background, mainObjective,
                       secondaryObjective, loseCondition):
     url = f"http://localhost:8000/character/edit/{ID}"
 
     payload = json.dumps({"name": name,
                           "player": player,
+                          "health": health,
                           "strength": strength,
                           "medicine": medicine,
                           "hacking": hacking,
@@ -156,6 +168,17 @@ def readName(ID):
 
 def readPlayer(ID):
     url = f"http://localhost:8000/character/{ID}/player"
+
+    payload = {}
+    headers = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    return response
+
+
+def readHealth(ID):
+    url = f"http://localhost:8000/character/{ID}/health"
 
     payload = {}
     headers = {}

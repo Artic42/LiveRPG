@@ -92,6 +92,39 @@ async def editPlayer(ID: int, request: Request):
     return JSONResponse(responseHandling.success("Player edited"))
 
 
+@router.put("/character/editHealth/{ID}")
+async def editHealth(ID: int, request: Request):
+    # Check for errors
+    if ID < 0:
+        return JSONResponse(
+            responseHandling.errorIncorrectParameter("ID must be a positive"))
+    if ID not in characterConsults.getAllIDs("/Database.db"):
+        return JSONResponse(
+            responseHandling.errorIDNotPresent("ID not present"))
+
+    # Extract body as json
+    body = await request.json()
+
+    # Check correct format of body
+    if "health" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No health specified"))
+
+    # Get value from body and check limits
+    health = body["health"]
+
+    if health < 0 or health > 5:
+        return JSONResponse(
+            responseHandling.errorIncorrectParameter(
+                "Health must be an integer between 0 and 5"))
+
+    # Edit the health
+    characterActions.editHealth("/Database.db", ID, health)
+
+    # return JSONResponse(success
+    return JSONResponse(responseHandling.success("Health edited"))
+
+
 @router.put("/character/editCharacteristics/{ID}")
 async def editCharacteristics(ID: int, request: Request):
     # Check for errors
@@ -268,6 +301,9 @@ async def editFullCharacter(ID: int, request: Request):
     if "player" not in body:
         return JSONResponse(
             responseHandling.errorWrongFormatBody("No player specified"))
+    if "health" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No health specified"))
     if "strength" not in body:
         return JSONResponse(
             responseHandling.errorWrongFormatBody("No strength specified"))
@@ -294,10 +330,15 @@ async def editFullCharacter(ID: int, request: Request):
                 "No lose condition specified"))
 
     # Get values from body and check limits
+    health = int(body["health"])
     strength = int(body["strength"])
     medicine = int(body["medicine"])
     hacking = int(body["hacking"])
 
+    if health < 0 or health > 5:
+        return JSONResponse(
+            responseHandling.errorIncorrectParameter(
+                "Health must be an integer between 0 and 5"))
     if strength < 0 or strength > 5:
         return JSONResponse(
             responseHandling.errorIncorrectParameter(
@@ -315,6 +356,7 @@ async def editFullCharacter(ID: int, request: Request):
     characterActions.editFullCharacter("/Database.db", ID,
                                        body["name"],
                                        body["player"],
+                                       body["health"],
                                        body["strength"],
                                        body["medicine"],
                                        body["hacking"],

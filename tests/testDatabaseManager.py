@@ -2,6 +2,7 @@ from articlib.testEngine import test
 import tests.testCharacterTable
 import tests.testEventTable
 import tests.testInformationTable
+import tests.testUserTable
 import shutil
 
 
@@ -11,6 +12,7 @@ def runTest():
     tests.testCharacterTable.runTest()
     tests.testEventTable.runTest()
     tests.testInformationTable.runTest()
+    tests.testUserTable.runTest()
     print("Database manager tests finished")
 
 

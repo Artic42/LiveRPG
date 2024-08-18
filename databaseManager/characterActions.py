@@ -20,6 +20,13 @@ def editPlayer(databasePath, characterID, player):
     DBConnection.commitClose()
 
 
+def editHealth(databasePath, characterID, health):
+    DBConnection = sqliteEngine.sqliteEngine(databasePath)
+    DBConnection.updateEntry("Characters", "Health", health,
+                             f"ID = {characterID}")
+    DBConnection.commitClose()
+
+
 def editCharacteristics(databasePath, characterID,
                         strength, medicine, hacking):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
@@ -59,12 +66,14 @@ def editLoseCondition(databasePath, characterID, loseCondition):
     DBConnection.commitClose()
 
 
-def editFullCharacter(databasePath, characterID, name, player, strength,
+def editFullCharacter(databasePath, characterID, name, player, health, strength,
                       medicine, hacking, background, mainObjective,
                       secondaryObjective, loseCondition):
     DBConnection = sqliteEngine.sqliteEngine(databasePath)
     DBConnection.updateEntry("Characters", "Name", name, f"ID = {characterID}")
     DBConnection.updateEntry("Characters", "Player", player,
+                             f"ID = {characterID}")
+    DBConnection.updateEntry("Characters", "Health", health,
                              f"ID = {characterID}")
     DBConnection.updateEntry("Characters", "Strength", strength,
                              f"ID = {characterID}")
