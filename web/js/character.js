@@ -78,6 +78,52 @@ function healthButton() {
     handleModifyHealth();
 }
 
+function addHealth() {
+    health = document.getElementById('healthValue').innerText;
+    health = parseInt(health) + 1;
+    const characterID = localStorage.getItem("characterID");
+
+    const healthData = {
+        health: health
+    };
+
+    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(healthData),
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        readCharacter();
+    });
+}
+
+function decreaseHealth() {
+    health = document.getElementById('healthValue').innerText;
+    health = parseInt(health) - 1;
+    const characterID = localStorage.getItem("characterID");
+
+    const healthData = {
+        health: health
+    };
+
+    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(healthData),
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        readCharacter();
+    });
+}
+
 // Run readCharacter immediately
 readCharacter();
 handleModifyHealth();
@@ -88,3 +134,5 @@ document.getElementById('strengthButton').addEventListener('click', rollStrength
 document.getElementById('hackButton').addEventListener('click', rollHack);
 document.getElementById('medicineButton').addEventListener('click', rollMedicine);
 document.getElementById('healthButton').addEventListener('click', healthButton);
+document.getElementById('increaseHealthButton').addEventListener('click', addHealth);
+document.getElementById('decreaseHealthButton').addEventListener('click', decreaseHealth);
