@@ -1,11 +1,16 @@
 const hostname = window.location.hostname;
-const playerID = 1;
+function returnToLogin() {
+    if (localStorage.getItem("characterID")==null) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
 
 function readCharacter() {
-    const characterID = 1;
+    const characterID = localStorage.getItem("characterID");
 
     // Fetch character data from server api
-    fetch(`http://${hostname}:8000/character/${playerID}`)
+    fetch(`http://${hostname}:8000/character/${characterID}`)
     .then(response => response.json())
     .then(json => {
         // Display character data

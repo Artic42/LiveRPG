@@ -1,5 +1,12 @@
 const hostname = window.location.hostname;
-const playerID = 1;
+function returnToLogin() {
+    if (localStorage.getItem("characterID")==null) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
+
+playerID = localStorage.getItem("characterID");
 
 function readMainObjective() {
     fetch(`http://${hostname}:8000/character/${playerID}/mainObjective`)

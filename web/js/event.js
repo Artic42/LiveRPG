@@ -1,5 +1,10 @@
 const hostname = window.location.hostname;
-const playerID = 1;
+function returnToLogin() {
+    if (localStorage.getItem("characterID")==null) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
 
 // Global variables for wait function
 var waiting = false;

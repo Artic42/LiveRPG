@@ -121,3 +121,11 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#login{
+    margin: auto;
+    padding: 0;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

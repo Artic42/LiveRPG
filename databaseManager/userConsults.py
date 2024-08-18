@@ -20,3 +20,10 @@ def readCharacter(databasePath, userID):
     characterID = DBConnection.readEntryFiltered("Users", "CharacterID", f"UserID = {userID}")
     DBConnection.commitClose()
     return characterID[0][0]
+
+
+def getID(databasePath, username):
+    DBConnection = sqliteEngine.sqliteEngine(databasePath)
+    ID = DBConnection.readEntryFiltered("Users", "UserID", f"Username = '{username}'")
+    DBConnection.commitClose()
+    return ID[0][0]

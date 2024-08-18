@@ -1,14 +1,18 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi import Request
 from fastapi import UploadFile
 from fastapi import File
 from fastapi.responses import FileResponse
+from fastapi.responses import JSONResponse
 import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
 import routers.eventActions as eventActions
 import routers.eventConsults as eventConsults
 import routers.informationActions as informationActions
 import routers.informationConsults as informationConsults
+import routers.responseHandling as responseHandling
+import databaseManager.userConsults as userConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
 
@@ -62,6 +66,36 @@ async def upload_file(file: UploadFile = File(...)):
     with open(file_location, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"info": f"File '{file.filename}' saved as '{file_location}'"}
+
+
+@app.post("/login")
+async def login(request: Request):
+    body = await request.json()
+
+    if "username" not in body:
+        return responseHandling.errorWrongFormatBody("Username not present")
+    if "password" not in body:
+        return responseHandling.errorWrongFormatBody("Password not present")
+
+    username = body["username"]
+    password = body["password"]
+
+    if username == "root" and password == "root":
+        return JSONResponse({
+            "status": 200,
+            "characterID": -1
+        })
+
+    ID = userConsults.getID("/Database.db", username)
+    savedPassword = userConsults.readPassword("/Database.db", ID)
+
+    if savedPassword == password:
+        characterID = userConsults.readCharacter("/Database.db", ID)
+        return JSONResponse({
+            "status": 200,
+            "characterID": characterID
+        })
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

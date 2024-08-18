@@ -1,5 +1,11 @@
 const hostname = window.location.hostname;
-const playerID = 1;
+playerID = localStorage.getItem("characterID");
+function returnToLogin() {
+    if (localStorage.getItem("characterID")==null) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
 
 function readBackground() {
     fetch(`http://${hostname}:8000/character/${playerID}/background`)

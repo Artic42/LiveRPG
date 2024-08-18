@@ -1,8 +1,13 @@
 const hostname = window.location.hostname;
-const playerID = 1;
+function returnToLogin() {
+    if (localStorage.getItem("characterID")==null) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
 
 // Global variables for wait function
-var presentID = 0;
+var presentID = localStorage.getItem("characterID");
 
 
 async function getOptions() {
