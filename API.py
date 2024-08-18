@@ -1,4 +1,5 @@
 import uvicorn
+import random
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi import UploadFile
@@ -95,6 +96,23 @@ async def login(request: Request):
             "status": 200,
             "characterID": characterID
         })
+
+
+@app.get("/roll/{dice}")
+def rollDice(dice: int):
+    result = 0
+    diceResults = []
+    for i in range(dice):
+        random.seed()
+        diceResult = random.randint(1, 6)
+        diceResults.append(diceResult)
+        if diceResult >= 5:
+            result += 1
+    return JSONResponse({
+        "status": 200,
+        "diceResults": diceResults,
+        "result": result
+    })
 
 
 if __name__ == "__main__":
