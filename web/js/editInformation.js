@@ -1,6 +1,13 @@
 const hostname = window.location.hostname;
 var informationID = 0;
 
+function returnToLogin() {
+    if (localStorage.getItem("characterID")!=-1) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
+
 function sendInformationChange() {
     // Get form values
     const known = document.getElementById('knownID').value;

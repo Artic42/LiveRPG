@@ -1,5 +1,12 @@
 const hostname = window.location.hostname;
 
+function returnToLogin() {
+    if (localStorage.getItem("characterID")!=-1) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
+
 function downloadDatabase() {
     fetch(`http://${hostname}:8000/downloadDatabase`, {
         method: 'GET',

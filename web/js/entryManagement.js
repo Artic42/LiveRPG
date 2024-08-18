@@ -1,5 +1,12 @@
 const hostname = window.location.hostname;
 
+function returnToLogin() {
+    if (localStorage.getItem("characterID")!=-1) {
+    window.location.href = 'login.html';
+}}
+
+returnToLogin();
+
 function handleCreateButton() {
     const selector = document.getElementById('selectorDropdown').value;
 
