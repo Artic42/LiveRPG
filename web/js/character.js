@@ -23,7 +23,33 @@ function readCharacter() {
         document.getElementById('medicineValue').innerText = json.Medicine;
     });
 }
-   
+
+function rollMedicine() {
+    console.log("Rolling Medicine");
+    rollDice(document.getElementById('medicineValue').innerText);
+}
+
+function rollStrength() {
+    console.log("Rolling Strength");
+    rollDice(document.getElementById('strengthValue').innerText);
+}
+
+function rollHack() {
+    console.log("Rolling Hack");
+    rollDice(document.getElementById('hackValue').innerText);
+}
+
+
+function rollDice(dices) {
+    // Fetch character data from server api
+    fetch(`http://${hostname}:8000/roll/${dices}`)
+    .then(response => response.json())
+    .then(json => {
+        // Display character data
+        console.log(json);
+    });
+}
+
 
 // Run readCharacter immediately
 readCharacter();

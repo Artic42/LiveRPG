@@ -38,3 +38,10 @@ def errorWrongFormatBody(message):
         "status": 484,
         "message": message
     }
+
+
+def errorWrongCredentials():
+    return {
+        "status": 485,
+        "message": "Wrong credentials"
+    }
