@@ -86,9 +86,13 @@ h1 {
     width: 200px;
     margin-bottom: 20px;
 }
-
+.logo{
+    width: 100px;
+    height: 100px;
+}
 #statTable td{
     height: 40px;
+    width: 150px;
 }
 
 #characterForm table{
@@ -101,6 +105,8 @@ h1 {
 #characterForm td{
     height: 40px;
 }
+
+
 
 #secondaryObjective{
     background-color: #000000;

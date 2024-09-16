@@ -1,4 +1,6 @@
 const hostname = window.location.hostname;
+var showModifyHealth = false;
+
 function returnToLogin() {
     if (localStorage.getItem("characterID")==null) {
     window.location.href = 'login.html';
@@ -24,35 +26,113 @@ function readCharacter() {
     });
 }
 
-function rollMedicine() {
-    console.log("Rolling Medicine");
-    rollDice(document.getElementById('medicineValue').innerText);
-}
-
 function rollStrength() {
-    console.log("Rolling Strength");
-    rollDice(document.getElementById('strengthValue').innerText);
-}
+    strength = document.getElementById('strengthValue').innerText;
 
-function rollHack() {
-    console.log("Rolling Hack");
-    rollDice(document.getElementById('hackValue').innerText);
-}
-
-
-function rollDice(dices) {
-    // Fetch character data from server api
-    fetch(`http://${hostname}:8000/roll/${dices}`)
+    fetch(`http://${hostname}:8000/roll/${strength}`)
     .then(response => response.json())
     .then(json => {
-        // Display character data
         console.log(json);
+        document.getElementById('rollResult').innerText = "Resultado fuerza " + json.result;
     });
 }
 
+function rollHack() {
+    hack = document.getElementById('hackValue').innerText;
+
+    fetch(`http://${hostname}:8000/roll/${hack}`)
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        document.getElementById('rollResult').innerText = "Resultado hack " + json.result;
+    });
+}
+
+function rollMedicine() {
+    medicine = document.getElementById('medicineValue').innerText;
+
+    fetch(`http://${hostname}:8000/roll/${medicine}`)
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        document.getElementById('rollResult').innerText = "Resultado medicina " + json.result;
+    });
+}
+
+function handleModifyHealth() {
+    if (showModifyHealth == true) {
+        document.getElementById('modifyHealth').style.display = '';
+    } else {
+        document.getElementById('modifyHealth').style.display = 'none';
+    }
+}
+
+function healthButton() {
+    if (showModifyHealth == true) {
+        showModifyHealth = false;
+    }
+    else {
+        showModifyHealth = true;
+    }
+    console.log(showModifyHealth);
+    handleModifyHealth();
+}
+
+function addHealth() {
+    health = document.getElementById('healthValue').innerText;
+    health = parseInt(health) + 1;
+    const characterID = localStorage.getItem("characterID");
+
+    const healthData = {
+        health: health
+    };
+
+    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(healthData),
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        readCharacter();
+    });
+}
+
+function decreaseHealth() {
+    health = document.getElementById('healthValue').innerText;
+    health = parseInt(health) - 1;
+    const characterID = localStorage.getItem("characterID");
+
+    const healthData = {
+        health: health
+    };
+
+    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(healthData),
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        readCharacter();
+    });
+}
 
 // Run readCharacter immediately
 readCharacter();
+handleModifyHealth();
 
 // Set interval to run readCharacter every 30 seconds (30000 milliseconds)
 setInterval(readCharacter, 30000);
+document.getElementById('strengthButton').addEventListener('click', rollStrength);
+document.getElementById('hackButton').addEventListener('click', rollHack);
+document.getElementById('medicineButton').addEventListener('click', rollMedicine);
+document.getElementById('healthButton').addEventListener('click', healthButton);
+document.getElementById('increaseHealthButton').addEventListener('click', addHealth);
+document.getElementById('decreaseHealthButton').addEventListener('click', decreaseHealth);
