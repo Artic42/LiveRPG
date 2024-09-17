@@ -12,7 +12,7 @@ function readCharacter() {
     const characterID = localStorage.getItem("characterID");
 
     // Fetch character data from server api
-    fetch(`http://${hostname}:8000/character/${characterID}`)
+    fetch(`http://lsbapi.artic42.com/character/${characterID}`)
     .then(response => response.json())
     .then(json => {
         // Display character data
@@ -29,7 +29,7 @@ function readCharacter() {
 function rollStrength() {
     strength = document.getElementById('strengthValue').innerText;
 
-    fetch(`http://${hostname}:8000/roll/${strength}`)
+    fetch(`http://lsbapi.artic42.com/roll/${strength}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -40,7 +40,7 @@ function rollStrength() {
 function rollHack() {
     hack = document.getElementById('hackValue').innerText;
 
-    fetch(`http://${hostname}:8000/roll/${hack}`)
+    fetch(`http://lsbapi.artic42.com/roll/${hack}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -51,7 +51,7 @@ function rollHack() {
 function rollMedicine() {
     medicine = document.getElementById('medicineValue').innerText;
 
-    fetch(`http://${hostname}:8000/roll/${medicine}`)
+    fetch(`http://lsbapi.artic42.com/roll/${medicine}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -87,7 +87,7 @@ function addHealth() {
         health: health
     };
 
-    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+    fetch(`http://lsbapi.artic42.com/character/editHealth/${characterID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function decreaseHealth() {
         health: health
     };
 
-    fetch(`http://${hostname}:8000/character/editHealth/${characterID}`, {
+    fetch(`http://lsbapi.artic42.com/character/editHealth/${characterID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

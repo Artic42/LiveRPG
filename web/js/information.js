@@ -12,7 +12,7 @@ var presentID = localStorage.getItem("characterID");
 
 async function getOptions() {
     const selectElement = document.getElementById('informationDropdown');
-    const response = await fetch(`http://${hostname}:8000/information/readKnownCharacters/${playerID}`);
+    const response = await fetch(`http://lsbapi.artic42.com/information/readKnownCharacters/${playerID}`);
     const json = await response.json();
     console.log(json);
     const IDs = json.knownIDs;
@@ -29,7 +29,7 @@ async function getOptions() {
 }
 
 async function getNameAbout(ID) {
-    const response = await fetch(`http://${hostname}:8000/information/readAboutName/${ID}`);
+    const response = await fetch(`http://lsbapi.artic42.com/information/readAboutName/${ID}`);
     const json = await response.json();
     console.log(json);
     console.log(json.name);
@@ -42,7 +42,7 @@ function readDescription() {
         descriptionElement.innerText = '';
         return;
     }
-    fetch(`http://${hostname}:8000/information/readDescription/${presentID}`)
+    fetch(`http://lsbapi.artic42.com/information/readDescription/${presentID}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);

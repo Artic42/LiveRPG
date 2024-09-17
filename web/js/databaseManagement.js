@@ -8,7 +8,7 @@ function returnToLogin() {
 returnToLogin();
 
 function downloadDatabase() {
-    fetch(`http://${hostname}:8000/downloadDatabase`, {
+    fetch(`http://lsbapi.artic42.com/downloadDatabase`, {
         method: 'GET',
     })
     .then(response => {
@@ -42,7 +42,7 @@ function uploadDatabase() {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch(`http://${hostname}:8000/uploadDatabase`, {
+    fetch(`http://lsbapi.artic42.com/uploadDatabase`, {
         method: 'POST',
         body: formData,
     })

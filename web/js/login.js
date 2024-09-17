@@ -10,7 +10,7 @@ function login() {
 
     console.log(userData);
 
-    fetch(`http://${hostname}:8000/login`, {
+    fetch(`http://lsbapi.artic42.com/login`, {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: {
@@ -20,7 +20,7 @@ function login() {
     .then(response => response.json())
     .then(json => {
         if (json.characterID != null) {
-            localStorage.setItem('characterID', json.characterID);
+            sessionStorage.setItem('characterID', json.characterID);
             window.location.href = 'index.html';
         } else {
             alert('Login failed');

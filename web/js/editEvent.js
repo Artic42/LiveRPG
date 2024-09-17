@@ -31,7 +31,7 @@ function sendEventChange() {
 
     console.log(eventData);
 
-    fetch(`http://${hostname}:8000/event/editEvent/${eventID}`, {
+    fetch(`http://lsbapi.artic42.com/event/editEvent/${eventID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function readEvent() {
     eventID = document.getElementById('eventID').value;
     document.getElementById('EventIDNumber').innerText = "ID: " + eventID;
 
-    fetch(`http://${hostname}:8000/event/read/${eventID}`)
+    fetch(`http://lsbapi.artic42.com/event/read/${eventID}`)
     .then(response => response.json())
     .then(json => {
         // Display event data

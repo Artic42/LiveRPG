@@ -30,7 +30,7 @@ function readEvent() {
     }
 
     // Fetch event data from server api
-    fetch(`http://${hostname}:8000/event/read/${eventID}`)
+    fetch(`http://lsbapi.artic42.com/event/read/${eventID}`)
     .then(response => response.json())
     .then(json => {
         // Display event data

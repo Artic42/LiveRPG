@@ -47,7 +47,7 @@ function handleDeleteButton() {
 function createCharacter() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/character/create/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/character/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -57,7 +57,7 @@ function createCharacter() {
 function deleteCharacter() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/character/delete/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/character/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -67,7 +67,7 @@ function deleteCharacter() {
 function createEvent() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/event/create/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/event/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -77,7 +77,7 @@ function createEvent() {
 function deleteEvent() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/event/delete/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/event/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -87,7 +87,7 @@ function deleteEvent() {
 function createInformation() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/information/create/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/information/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -97,7 +97,7 @@ function createInformation() {
 function deleteInformation() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://${hostname}:8000/information/delete/${ID}`, {
+    fetch(`http://lsbapi.artic42.com/information/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())

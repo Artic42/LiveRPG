@@ -8,7 +8,7 @@ function returnToLogin() {
 returnToLogin();
 
 function readBackground() {
-    fetch(`http://${hostname}:8000/character/${playerID}/background`)
+    fetch(`http://lsbapi.artic42.com/character/${playerID}/background`)
     .then(response => response.json())
     .then(json => {
         console.log(json);

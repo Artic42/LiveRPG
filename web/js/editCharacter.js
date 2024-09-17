@@ -38,7 +38,7 @@ function sendCharacterChange() {
     // Log the JSON object to the console
     console.log(characterData);
 
-    fetch(`http://${hostname}:8000/character/edit/1`, {
+    fetch(`http://lsbapi.artic42.com/character/edit/1`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function readCharacter() {
         return;
     }
     document.getElementById('characterIDText').innerText = `Character ID: ${characterID}`;
-    fetch(`http://${hostname}:8000/character/${characterID}`)
+    fetch(`http://lsbapi.artic42.com/character/${characterID}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);

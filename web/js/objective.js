@@ -9,7 +9,7 @@ returnToLogin();
 playerID = localStorage.getItem("characterID");
 
 function readMainObjective() {
-    fetch(`http://${hostname}:8000/character/${playerID}/mainObjective`)
+    fetch(`http://lsbapi.artic42.com/character/${playerID}/mainObjective`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -18,7 +18,7 @@ function readMainObjective() {
 }
 
 function readSecondaryObjective() {
-    fetch(`http://${hostname}:8000/character/${playerID}/secondaryObjective`)
+    fetch(`http://lsbapi.artic42.com/character/${playerID}/secondaryObjective`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -27,7 +27,7 @@ function readSecondaryObjective() {
 }
 
 function readDefeatCondition() {
-    fetch(`http://${hostname}:8000/character/${playerID}/loseCondition`)
+    fetch(`http://lsbapi.artic42.com/character/${playerID}/loseCondition`)
     .then(response => response.json())
     .then(json => {
         console.log(json);

@@ -23,7 +23,7 @@ function sendInformationChange() {
 
     console.log(informationData);
 
-    fetch(`http://${hostname}:8000/information/editFull/${informationID}`, {
+    fetch(`http://lsbapi.artic42.com/information/editFull/${informationID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ function readInformation() {
     informationID = document.getElementById('informationID').value;
     document.getElementById('InformationIDNumber').innerText = "ID: " + informationID;
 
-    fetch(`http://${hostname}:8000/information/readFull/${informationID}`)
+    fetch(`http://lsbapi.artic42.com/information/readFull/${informationID}`)
     .then(response => response.json())
     .then(json => {
         // Display information data
