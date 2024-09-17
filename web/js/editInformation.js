@@ -2,7 +2,7 @@ const hostname = window.location.hostname;
 var informationID = 0;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")!=-1) {
+    if (sessionStorage.getItem("characterID")!=-1) {
     window.location.href = 'login.html';
 }}
 
@@ -23,7 +23,7 @@ function sendInformationChange() {
 
     console.log(informationData);
 
-    fetch(`http://lsbapi.artic42.com/information/editFull/${informationID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/information/editFull/${informationID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ function readInformation() {
     informationID = document.getElementById('informationID').value;
     document.getElementById('InformationIDNumber').innerText = "ID: " + informationID;
 
-    fetch(`http://lsbapi.artic42.com/information/readFull/${informationID}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/information/readFull/${informationID}`)
     .then(response => response.json())
     .then(json => {
         // Display information data

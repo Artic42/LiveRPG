@@ -1,7 +1,7 @@
 const hostname = window.location.hostname;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")!=-1) {
+    if (sessionStorage.getItem("characterID")!=-1) {
     window.location.href = 'login.html';
 }}
 
@@ -47,7 +47,7 @@ function handleDeleteButton() {
 function createCharacter() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/character/create/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -57,7 +57,7 @@ function createCharacter() {
 function deleteCharacter() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/character/delete/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -67,7 +67,7 @@ function deleteCharacter() {
 function createEvent() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/event/create/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/event/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -77,7 +77,7 @@ function createEvent() {
 function deleteEvent() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/event/delete/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/event/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -87,7 +87,7 @@ function deleteEvent() {
 function createInformation() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/information/create/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/information/create/${ID}`, {
         method: 'POST',
     })
     .then(response => response.json())
@@ -97,7 +97,7 @@ function createInformation() {
 function deleteInformation() {
     const ID =  document.getElementById('ID').value;
 
-    fetch(`http://lsbapi.artic42.com/information/delete/${ID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/information/delete/${ID}`, {
         method: 'DELETE',
     })
     .then(response => response.json())

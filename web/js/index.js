@@ -1,15 +1,19 @@
 function returnToLogin() {
-    if (localStorage.getItem("characterID")==null) {
-    window.location.href = 'login.html';
-}}
+    if (sessionStorage.getItem("characterID")==null) {
+        window.location.href = 'login.html';
+    }
+    if (sessionStorage.getItem("apiServer")==null) {
+        window.location.href = 'login.html'
+    }
+}
 
 function logout() {
-    localStorage.removeItem('characterID');
+    sessionStorage.removeItem('characterID');
     returnToLogin();
 }
 
 function handleControlPanelAccess() {
-    const characterID = localStorage.getItem('characterID');
+    const characterID = sessionStorage.getItem('characterID');
     if (characterID != -1) {
         document.getElementById('buttonControlPanel').style.display = 'none';
     }

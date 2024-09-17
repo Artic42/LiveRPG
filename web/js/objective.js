@@ -1,15 +1,19 @@
 const hostname = window.location.hostname;
 function returnToLogin() {
-    if (localStorage.getItem("characterID")==null) {
-    window.location.href = 'login.html';
-}}
+    if (sessionStorage.getItem("characterID")==null) {
+        window.location.href = 'login.html';
+    }
+    if (sessionStorage.getItem("apiServer")==null) {
+        window.location.href = 'login.html'
+    }
+}
 
 returnToLogin();
 
-playerID = localStorage.getItem("characterID");
+playerID = sessionStorage.getItem("characterID");
 
 function readMainObjective() {
-    fetch(`http://lsbapi.artic42.com/character/${playerID}/mainObjective`)
+    fetch(`${sessionStorage.getItem("apiServer")}/character/${playerID}/mainObjective`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -18,7 +22,7 @@ function readMainObjective() {
 }
 
 function readSecondaryObjective() {
-    fetch(`http://lsbapi.artic42.com/character/${playerID}/secondaryObjective`)
+    fetch(`${sessionStorage.getItem("apiServer")}/character/${playerID}/secondaryObjective`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -27,7 +31,7 @@ function readSecondaryObjective() {
 }
 
 function readDefeatCondition() {
-    fetch(`http://lsbapi.artic42.com/character/${playerID}/loseCondition`)
+    fetch(`${sessionStorage.getItem("apiServer")}/character/${playerID}/loseCondition`)
     .then(response => response.json())
     .then(json => {
         console.log(json);

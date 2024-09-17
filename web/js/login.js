@@ -10,7 +10,7 @@ function login() {
 
     console.log(userData);
 
-    fetch(`http://lsbapi.artic42.com/login`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/login`, {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: {

@@ -1,8 +1,12 @@
 const hostname = window.location.hostname;
 function returnToLogin() {
-    if (localStorage.getItem("characterID")==null) {
-    window.location.href = 'login.html';
-}}
+    if (sessionStorage.getItem("characterID")==null) {
+        window.location.href = 'login.html';
+    }
+    if (sessionStorage.getItem("apiServer")==null) {
+        window.location.href = 'login.html'
+    }
+}
 
 returnToLogin();
 
@@ -30,7 +34,7 @@ function readEvent() {
     }
 
     // Fetch event data from server api
-    fetch(`http://lsbapi.artic42.com/event/read/${eventID}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/event/read/${eventID}`)
     .then(response => response.json())
     .then(json => {
         // Display event data

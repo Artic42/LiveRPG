@@ -1,14 +1,14 @@
 const hostname = window.location.hostname;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")!=-1) {
+    if (sessionStorage.getItem("characterID")!=-1) {
     window.location.href = 'login.html';
 }}
 
 returnToLogin();
 
 function downloadDatabase() {
-    fetch(`http://lsbapi.artic42.com/downloadDatabase`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/downloadDatabase`, {
         method: 'GET',
     })
     .then(response => {
@@ -42,7 +42,7 @@ function uploadDatabase() {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch(`http://lsbapi.artic42.com/uploadDatabase`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/uploadDatabase`, {
         method: 'POST',
         body: formData,
     })

@@ -2,7 +2,7 @@ const hostname = window.location.hostname;
 var eventID = 0;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")!=-1) {
+    if (sessionStorage.getItem("characterID")!=-1) {
     window.location.href = 'login.html';
 }}
 
@@ -31,7 +31,7 @@ function sendEventChange() {
 
     console.log(eventData);
 
-    fetch(`http://lsbapi.artic42.com/event/editEvent/${eventID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/event/editEvent/${eventID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function readEvent() {
     eventID = document.getElementById('eventID').value;
     document.getElementById('EventIDNumber').innerText = "ID: " + eventID;
 
-    fetch(`http://lsbapi.artic42.com/event/read/${eventID}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/event/read/${eventID}`)
     .then(response => response.json())
     .then(json => {
         // Display event data

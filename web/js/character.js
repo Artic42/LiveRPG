@@ -2,17 +2,21 @@ const hostname = window.location.hostname;
 var showModifyHealth = false;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")==null) {
-    window.location.href = 'login.html';
-}}
+    if (sessionStorage.getItem("characterID")==null) {
+        window.location.href = 'login.html';
+    }
+    if (sessionStorage.getItem("apiServer")==null) {
+        window.location.href = 'login.html'
+    }
+}
 
 returnToLogin();
 
 function readCharacter() {
-    const characterID = localStorage.getItem("characterID");
+    const characterID = sessionStorage.getItem("characterID");
 
     // Fetch character data from server api
-    fetch(`http://lsbapi.artic42.com/character/${characterID}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/character/${characterID}`)
     .then(response => response.json())
     .then(json => {
         // Display character data
@@ -29,7 +33,7 @@ function readCharacter() {
 function rollStrength() {
     strength = document.getElementById('strengthValue').innerText;
 
-    fetch(`http://lsbapi.artic42.com/roll/${strength}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/roll/${strength}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -40,7 +44,7 @@ function rollStrength() {
 function rollHack() {
     hack = document.getElementById('hackValue').innerText;
 
-    fetch(`http://lsbapi.artic42.com/roll/${hack}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/roll/${hack}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -51,7 +55,7 @@ function rollHack() {
 function rollMedicine() {
     medicine = document.getElementById('medicineValue').innerText;
 
-    fetch(`http://lsbapi.artic42.com/roll/${medicine}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/roll/${medicine}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -81,13 +85,13 @@ function healthButton() {
 function addHealth() {
     health = document.getElementById('healthValue').innerText;
     health = parseInt(health) + 1;
-    const characterID = localStorage.getItem("characterID");
+    const characterID = sessionStorage.getItem("characterID");
 
     const healthData = {
         health: health
     };
 
-    fetch(`http://lsbapi.artic42.com/character/editHealth/${characterID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/editHealth/${characterID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -104,13 +108,13 @@ function addHealth() {
 function decreaseHealth() {
     health = document.getElementById('healthValue').innerText;
     health = parseInt(health) - 1;
-    const characterID = localStorage.getItem("characterID");
+    const characterID = sessionStorage.getItem("characterID");
 
     const healthData = {
         health: health
     };
 
-    fetch(`http://lsbapi.artic42.com/character/editHealth/${characterID}`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/editHealth/${characterID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ const hostname = window.location.hostname;
 var characterID = 0;
 
 function returnToLogin() {
-    if (localStorage.getItem("characterID")!=-1) {
+    if (sessionStorage.getItem("characterID")!=-1) {
     window.location.href = 'login.html';
 }}
 
@@ -38,7 +38,7 @@ function sendCharacterChange() {
     // Log the JSON object to the console
     console.log(characterData);
 
-    fetch(`http://lsbapi.artic42.com/character/edit/1`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/edit/1`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function readCharacter() {
         return;
     }
     document.getElementById('characterIDText').innerText = `Character ID: ${characterID}`;
-    fetch(`http://lsbapi.artic42.com/character/${characterID}`)
+    fetch(`${sessionStorage.getItem("apiServer")}/character/${characterID}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
