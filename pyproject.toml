@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "databaseManager"
+name = "database"
 version = "0.1"
 description = ""
 authors = ["Iñaki Arrondo <main@artic42.com>"]
@@ -12,6 +12,13 @@ articlib = "^0.2.3"
 fastapi = "^0.111.1"
 requests = "^2.32.3"
 
+[tool.poetry.scripts]
+api = "database.API:start"
+
+[tool.docker]
+expose = [8000]
+cmd = ["api"]
+tag = ["saphir_blue_api:latest"]
 
 [build-system]
 requires = ["poetry-core"]
