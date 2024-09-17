@@ -1,0 +1,20 @@
+FROM python:3.10
+
+# Copy necessary files
+COPY pyproject.toml ./
+#COPY poetry.lock ./
+COPY databaseManager ./databaseManager
+COPY API.py ./API.py
+COPY routers ./routers 
+COPY EmptyDatabase.db ./Database.db
+COPY EmptyDatabase.db ./ProductionDatabase.db
+COPY TestDatabase.db ./TestDatabase.db
+
+# build poetry enviroment
+RUN pip3 install poetry
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-root
+
+EXPOSE 8000
+
+CMD ["python3", "API.py"]
