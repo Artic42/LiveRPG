@@ -1,0 +1,16 @@
+FROM nginx:alpine
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY css /usr/share/nginx/css
+COPY html /usr/share/nginx/html
+COPY js /usr/share/nginx/js
+COPY images /usr/share/nginx/images
+COPY index.html /usr/share/nginx/
+COPY login.html /usr/share/nginx/
+
+
+# Open ports
+EXPOSE 80
+
+# Start command
+CMD ["nginx", "-g", "daemon off;"]
