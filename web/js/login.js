@@ -19,7 +19,7 @@ function login() {
     })
     .then(response => response.json())
     .then(json => {
-        if (json.characterID != null) {
+        if (json.status == 200) {
             sessionStorage.setItem('characterID', json.characterID);
             window.location.href = 'index.html';
         } else {

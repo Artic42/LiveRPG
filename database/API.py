@@ -89,6 +89,9 @@ async def login(request: Request):
         })
 
     ID = userConsults.getID("/Database.db", username)
+    if ID == 0:
+        return responseHandling.errorWrongCredentials()
+
     savedPassword = userConsults.readPassword("/Database.db", ID)
 
     if savedPassword == password:
