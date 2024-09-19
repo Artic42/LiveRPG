@@ -9,6 +9,7 @@ function returnToLogin() {
 returnToLogin();
 
 function sendCharacterChange() { 
+    characterID = document.getElementById('characterID').value;
     // Get form values
     const name = document.getElementById('name').value;
     const player = document.getElementById('player').value;
@@ -38,7 +39,7 @@ function sendCharacterChange() {
     // Log the JSON object to the console
     console.log(characterData);
 
-    fetch(`${sessionStorage.getItem("apiServer")}/character/edit/1`, {
+    fetch(`${sessionStorage.getItem("apiServer")}/character/edit/${characterID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

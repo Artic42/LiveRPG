@@ -4,11 +4,9 @@ echo "sessionStorage.setItem('apiServer', 'http://localhost:8000');" >> web/logi
 # Stop and remove already running images adn containers
 sudo docker stop LSBAPI
 sudo docker rm LSBAPI
-sudo docker rmi lsb_api
 
 sudo docker stop LSBWEB
 sudo docker rm LSBWEB
-sudo docker rmi lsb_web
 
 # Build API server
 sudo docker build -t lsb_api database

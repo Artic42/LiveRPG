@@ -11,12 +11,13 @@ function returnToLogin() {
 returnToLogin();
 
 // Global variables for wait function
-var presentID = sessionStorage.getItem("characterID");
+var presentID = 0;
 
 
 async function getOptions() {
+    const characterID = sessionStorage.getItem("characterID");
     const selectElement = document.getElementById('informationDropdown');
-    const response = await fetch(`${sessionStorage.getItem("apiServer")}/information/readKnownCharacters/${playerID}`);
+    const response = await fetch(`${sessionStorage.getItem("apiServer")}/information/readKnownCharacters/${characterID}`);
     const json = await response.json();
     console.log(json);
     const IDs = json.knownIDs;

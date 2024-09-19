@@ -24,7 +24,7 @@ def readAboutName(ID: int):
     # Get the about character
     aboutID = infoConsults.getAboutCharacter("/Database.db", ID)
     name = characterConsults.getCharacterName("/Database.db", aboutID)
-    return JSONResponse({"status": 200, "name": name})
+    return JSONResponse({"status": 200, "name": name, "aboutID" : aboutID})
 
 
 @router.get("/information/readKnown/{ID}")
