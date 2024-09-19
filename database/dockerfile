@@ -11,7 +11,7 @@ COPY EmptyDatabase.db ./ProductionDatabase.db
 COPY TestDatabase.db ./TestDatabase.db
 
 # build poetry enviroment
-RUN pip3 install poetry
+RUN sudo apt install python3-poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-root
 

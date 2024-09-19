@@ -16,7 +16,6 @@ import routers.responseHandling as responseHandling
 import databaseManager.userConsults as userConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
-import articlib.dice as diceRoller
 
 app = FastAPI()
 
@@ -102,20 +101,6 @@ async def login(request: Request):
         })
 
     return responseHandling.errorWrongCredentials()
-
-
-@app.get("/roll/{dice}")
-async def roll(dice: int):
-    diceList = []
-    for i in range(dice):
-        diceList.append(diceRoller.dice(6))
-    dicePool = diceRoller.dicePool(diceList)
-    successes = dicePool.rollSuccesses(5)
-    return JSONResponse({
-        "status": 200,
-        "dice": diceList,
-        "successes": successes
-    })
 
 
 @app.get("/roll/{dice}")
