@@ -39,21 +39,30 @@ function readEvent() {
     .then(json => {
         // Display event data
         console.log(json);
-        document.getElementById('eventDescription').innerText = json.description;
-        checkForHack(json.hack);
-        checkForActivate(json.activate);
-        checkOfEquip(json.equip);
-        if (json.wait > 0) {
-            document.getElementById('eventNumber').readOnly = true;
-            timeRemaining = json.wait;
+        if (json.status == 200)
+        {
+            document.getElementById('eventDescription').innerText = json.description;
+            checkForHack(json.hack);
+            checkForActivate(json.activate);
+            checkOfEquip(json.equip);
+            if (json.wait > 0) {
+                document.getElementById('eventNumber').readOnly = true;
+                timeRemaining = json.wait;
+            }
+            else {
+                timeRemaining = 0;
+                document.getElementById('eventNumber').readOnly = false;
+            }
+            wait = json.wait;
+            redirectID = json.redirectID;
         }
-        else {
-            timeRemaining = 0;
-            document.getElementById('eventNumber').readOnly = false;
+        else
+        {
+            document.getElementById('eventDescription').innerText = `ERROR ${json.status}`;
+            checkForHack(0);
+            checkForActivate(0);
+            checkOfEquip(0);
         }
-        wait = json.wait;
-        redirectID = json.redirectID;
-
     });
 }
 
@@ -67,10 +76,10 @@ function checkEventIDChange() {
 
 function checkForHack(hack) {
     if (hack == 1) {
-        document.getElementById('activateButton').style.display = 'block';
+        document.getElementById('hackButton').style.display = 'block';
     }
     else {
-        document.getElementById('activateButton').style.display = 'none';
+        document.getElementById('hackButton').style.display = 'none';
     }
 }
 
