@@ -295,39 +295,12 @@ async def editFullCharacter(ID: int, request: Request):
     body = await request.json()
 
     # Check correct format of body
-    if "name" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No name specified"))
-    if "player" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No player specified"))
-    if "health" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No health specified"))
-    if "strength" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No strength specified"))
-    if "medicine" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No medicine specified"))
-    if "hacking" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No hacking specified"))
-    if "background" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody("No background specified"))
-    if "mainObjective" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody(
-                "No main objective specified"))
-    if "secondaryObjective" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody(
-                "No secondary objective specified"))
-    if "loseCondition" not in body:
-        return JSONResponse(
-            responseHandling.errorWrongFormatBody(
-                "No lose condition specified"))
+    check = checkCharacterFormat1(body)
+    if check != 0:
+        return check
+    check = checkCharacterFormat2(body)
+    if check != 0:
+        return check
 
     # Get values from body and check limits
     health = int(body["health"])
@@ -367,3 +340,44 @@ async def editFullCharacter(ID: int, request: Request):
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Character edited"))
+
+
+def checkCharacterFormat1(body):
+    if "name" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No name specified"))
+    if "player" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No player specified"))
+    if "health" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No health specified"))
+    if "strength" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No strength specified"))
+    if "medicine" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No medicine specified"))
+    return 0
+
+
+def checkCharacterFormat2(body):
+    if "hacking" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No hacking specified"))
+    if "background" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody("No background specified"))
+    if "mainObjective" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody(
+                "No main objective specified"))
+    if "secondaryObjective" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody(
+                "No secondary objective specified"))
+    if "loseCondition" not in body:
+        return JSONResponse(
+            responseHandling.errorWrongFormatBody(
+                "No lose condition specified"))
+    return 0
