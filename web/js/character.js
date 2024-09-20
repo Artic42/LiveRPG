@@ -31,18 +31,18 @@ function readCharacter() {
 }
 
 function rollStrength() {
-    strength = document.getElementById('strengthValue').innerText;
+    const strength = document.getElementById('strengthValue').innerText;
 
     fetch(`${sessionStorage.getItem("apiServer")}/roll/${strength}`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
-        document.getElementById('rollResult').innerText = "Resultado fuerza " + json.result;
+        document.getElementById('rollResult').innerText = "Resultado combate " + json.result;
     });
 }
 
 function rollHack() {
-    hack = document.getElementById('hackValue').innerText;
+    const hack = document.getElementById('hackValue').innerText;
 
     fetch(`${sessionStorage.getItem("apiServer")}/roll/${hack}`)
     .then(response => response.json())
@@ -53,7 +53,7 @@ function rollHack() {
 }
 
 function rollMedicine() {
-    medicine = document.getElementById('medicineValue').innerText;
+    const medicine = document.getElementById('medicineValue').innerText;
 
     fetch(`${sessionStorage.getItem("apiServer")}/roll/${medicine}`)
     .then(response => response.json())

@@ -12,7 +12,7 @@ function sendEventChange() {
     // Get form values
     const description = document.getElementById('descriptionTextInput').value;
     const activate = readCheckbox('activate');
-    const hack = readCheckbox('hack');
+    const hack = document.getElementById('hack').value;
     const equip = readCheckbox('equip');
     const wait = document.getElementById('wait').value;
     const activated = readCheckbox('activated');
@@ -53,7 +53,7 @@ function readEvent() {
         console.log(json);
         document.getElementById('descriptionTextInput').value = json.description;
         handleCheckbox('activate', json.activate);
-        handleCheckbox('hack', json.hack);
+        document.getElementById('hack').value = json.hack;
         handleCheckbox('equip', json.equip);
         document.getElementById('wait').value = json.wait;
         handleCheckbox('activated', json.activated);
