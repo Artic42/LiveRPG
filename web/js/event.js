@@ -20,6 +20,7 @@ var eventID = 0;
 var presentEventID = 0;
 var characterID = sessionStorage.getItem("characterID");
 var hackValue = 0;
+var notAutoJump = false;
 
 
 
@@ -51,6 +52,12 @@ function readEvent() {
             checkForHack(json.hack);
             checkForActivate(json.activate);
             checkOfEquip(json.equip);
+            if (json.activate || json.equip || json.hack) {
+                notAutoJump = true;
+            }
+            else {
+                notAutoJump = false;
+            }
             if (json.wait > 0) {
                 document.getElementById('eventNumber').readOnly = true;
                 timeRemaining = json.wait;
@@ -69,6 +76,7 @@ function readEvent() {
             checkForActivate(0);
             checkOfEquip(0);
             hackTarget = 0;
+            notAutoJump = 0;
         }
         if (json.activated) {
             document.getElementById('eventNumber').value = redirectID;
@@ -122,7 +130,7 @@ function handleWait() {
     }
     else {
         hideWait();
-        if (redirectID > 0 && waiting == true) {
+        if (redirectID > 0 && waiting == true && notAutoJump == false) {
             console.log('Redirecting to event: ' + redirectID);
             document.getElementById('eventNumber').value = redirectID;
             checkEventIDChange()
