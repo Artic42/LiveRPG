@@ -63,7 +63,7 @@ def downloadDatabase():
 
 @app.post("/uploadDatabase")
 async def upload_file(file: UploadFile = File(...)):
-    file_location = "/Database.db"
+    file_location = "/Database/Database.db"
     with open(file_location, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"info": f"File '{file.filename}' saved as '{file_location}'"}
@@ -87,14 +87,14 @@ async def login(request: Request):
             "characterID": -1
         })
 
-    ID = userConsults.getID("/Database.db", username)
+    ID = userConsults.getID("/Database/Database.db", username)
     if ID == 0:
         return responseHandling.errorWrongCredentials()
 
-    savedPassword = userConsults.readPassword("/Database.db", ID)
+    savedPassword = userConsults.readPassword("/Database/Database.db", ID)
 
     if savedPassword == password:
-        characterID = userConsults.readCharacter("/Database.db", ID)
+        characterID = userConsults.readCharacter("/Database/Database.db", ID)
         return JSONResponse({
             "status": 200,
             "characterID": characterID

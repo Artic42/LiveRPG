@@ -14,12 +14,12 @@ def createCharacter(ID: int):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID in characterConsults.getAllIDs("/Database.db"):
+    if ID in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDAlreadyExists("ID already exists"))
 
     # Create the character
-    characterActions.createCharacter("/Database.db", ID)
+    characterActions.createCharacter("/Database/Database.db", ID)
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Character created"))
@@ -31,12 +31,12 @@ def deleteCharacter(ID: int):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
     # Delete the character
-    characterActions.deleteCharacter("/Database.db", ID)
+    characterActions.deleteCharacter("/Database/Database.db", ID)
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Character deleted"))
@@ -48,7 +48,7 @@ async def editName(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -61,7 +61,7 @@ async def editName(ID: int, request: Request):
             responseHandling.errorWrongFormatBody("No name specified"))
 
     # Edit the name
-    characterActions.editName("/Database.db", ID, body["name"])
+    characterActions.editName("/Database/Database.db", ID, body["name"])
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Name edited"))
@@ -73,7 +73,7 @@ async def editPlayer(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -86,7 +86,7 @@ async def editPlayer(ID: int, request: Request):
             responseHandling.errorWrongFormatBody("No player specified"))
 
     # Edit the player
-    characterActions.editPlayer("/Database.db", ID, body["player"])
+    characterActions.editPlayer("/Database/Database.db", ID, body["player"])
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Player edited"))
@@ -98,7 +98,7 @@ async def editHealth(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -119,7 +119,7 @@ async def editHealth(ID: int, request: Request):
                 "Health must be an integer between 0 and 5"))
 
     # Edit the health
-    characterActions.editHealth("/Database.db", ID, health)
+    characterActions.editHealth("/Database/Database.db", ID, health)
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Health edited"))
@@ -131,7 +131,7 @@ async def editCharacteristics(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -168,7 +168,7 @@ async def editCharacteristics(ID: int, request: Request):
                 "Hacking must be an integer between 0 and 5"))
 
     # Edit the characteristics
-    characterActions.editCharacteristics("/Database.db", ID,
+    characterActions.editCharacteristics("/Database/Database.db", ID,
                                          strength, medicine, hacking)
 
     # return JSONResponse(success
@@ -181,7 +181,7 @@ async def editBackground(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -194,7 +194,7 @@ async def editBackground(ID: int, request: Request):
             responseHandling.errorWrongFormatBody("No background specified"))
 
     # Edit the background
-    characterActions.editBackground("/Database.db", ID, body["background"])
+    characterActions.editBackground("/Database/Database.db", ID, body["background"])
 
     # return JSONResponse(success
     return JSONResponse(responseHandling.success("Background edited"))
@@ -206,7 +206,7 @@ async def editMainObjective(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -220,7 +220,7 @@ async def editMainObjective(ID: int, request: Request):
                 "No main objective specified"))
 
     # Edit the main objective
-    characterActions.editMainObjective("/Database.db", ID,
+    characterActions.editMainObjective("/Database/Database.db", ID,
                                        body["mainObjective"])
 
     # return JSONResponse(success
@@ -233,7 +233,7 @@ async def editSecondaryObjective(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -247,7 +247,7 @@ async def editSecondaryObjective(ID: int, request: Request):
                 "No secondary objective specified"))
 
     # Edit the secondary objective
-    characterActions.editSecondaryObjective("/Database.db", ID,
+    characterActions.editSecondaryObjective("/Database/Database.db", ID,
                                             body["secondaryObjective"])
 
     # return JSONResponse(success
@@ -260,7 +260,7 @@ async def editLoseCondition(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(
             responseHandling.errorIncorrectParameter("ID must be a positive"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -274,7 +274,7 @@ async def editLoseCondition(ID: int, request: Request):
                 "No lose condition specified"))
 
     # Edit the lose condition
-    characterActions.editLoseCondition("/Database.db", ID,
+    characterActions.editLoseCondition("/Database/Database.db", ID,
                                        body["loseCondition"])
 
     # return JSONResponse(success
@@ -287,7 +287,7 @@ async def editFullCharacter(ID: int, request: Request):
     if ID < 0:
         return JSONResponse(responseHandling.errorIncorrectParameter(
             "ID must be a positive integer"))
-    if ID not in characterConsults.getAllIDs("/Database.db"):
+    if ID not in characterConsults.getAllIDs("/Database/Database.db"):
         return JSONResponse(
             responseHandling.errorIDNotPresent("ID not present"))
 
@@ -326,7 +326,7 @@ async def editFullCharacter(ID: int, request: Request):
                 "Hacking must be an integer between 0 and 5"))
 
     # Edit the full character
-    characterActions.editFullCharacter("/Database.db", ID,
+    characterActions.editFullCharacter("/Database/Database.db", ID,
                                        body["name"],
                                        body["player"],
                                        body["health"],
