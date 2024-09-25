@@ -58,7 +58,7 @@ def deactivateTestMode():
 
 @app.get("/downloadDatabase")
 def downloadDatabase():
-    return FileResponse("Database.db", filename="Database.db", media_type="application/octet-stream")
+    return FileResponse("/Database/Database.db", filename="Database.db", media_type="application/octet-stream")
 
 
 @app.post("/uploadDatabase")

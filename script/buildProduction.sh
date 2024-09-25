@@ -1,4 +1,4 @@
-cat web/js/loginNoServer.js > web/js/login.js
+cat web/js/login.js > web/login.js
 echo "sessionStorage.setItem('apiServer', 'https://lsbapi.artic42.com');" >> web/login.js
 
 # Stop and remove already running images adn containers

@@ -1,6 +1,6 @@
 services:
   web:
-    build: ./web
+    build: ./web/
     ports: 
      - "7001:80"
     volumes:
@@ -9,7 +9,7 @@ services:
       - lsbnet
     restart: always
   api:
-    build: ./database
+    build: ./database/
     ports: 
      - "7002:8000"
     volumes:
@@ -17,3 +17,7 @@ services:
     networks:
       - lsbnet
     restart: always
+networks:
+  lsbnet:
+    ipam: bridge
+    
