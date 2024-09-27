@@ -6,7 +6,7 @@ COPY pyproject.toml ./
 COPY databaseManager ./databaseManager
 COPY API.py ./API.py
 COPY routers ./routers 
-COPY EmptyDatabase.db ./Database.db
+COPY EmptyDatabase.db ./Database/Database.db
 COPY EmptyDatabase.db ./ProductionDatabase.db
 COPY TestDatabase.db ./TestDatabase.db
 

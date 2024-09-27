@@ -10,17 +10,17 @@ router = APIRouter()
 @router.get("/event/read/{ID}")
 def readEvent(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
-    description = eventConsults.getEventDescription("/Database.db", ID)
-    hacking = eventConsults.getEventHack("/Database.db", ID)
-    wait = eventConsults.getEventWait("/Database.db", ID)
-    activate = eventConsults.getEventActivate("/Database.db", ID)
-    activated = eventConsults.getEventActivated("/Database.db", ID)
-    redirectID = eventConsults.getEventRedirectID("/Database.db", ID)
-    equip = eventConsults.getEventEquip("/Database.db", ID)
+    description = eventConsults.getEventDescription("/Database/Database.db", ID)
+    hacking = eventConsults.getEventHack("/Database/Database.db", ID)
+    wait = eventConsults.getEventWait("/Database/Database.db", ID)
+    activate = eventConsults.getEventActivate("/Database/Database.db", ID)
+    activated = eventConsults.getEventActivated("/Database/Database.db", ID)
+    redirectID = eventConsults.getEventRedirectID("/Database/Database.db", ID)
+    equip = eventConsults.getEventEquip("/Database/Database.db", ID)
 
     return JSONResponse({
         "status": 200,
@@ -37,10 +37,10 @@ def readEvent(ID: int, request: Request):
 @router.get("/event/readDescription/{ID}")
 def readDescription(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
-    description = eventConsults.getEventDescription("/Database.db", ID)
+    description = eventConsults.getEventDescription("/Database/Database.db", ID)
 
     return JSONResponse({
         "status": 200,
@@ -51,13 +51,13 @@ def readDescription(ID: int, request: Request):
 @router.get("/event/readFlags/{ID}")
 def readFlags(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
-    hacking = eventConsults.getEventHack("/Database.db", ID)
-    wait = eventConsults.getEventWait("/Database.db", ID)
-    activate = eventConsults.getEventActivate("/Database.db", ID)
-    equip = eventConsults.getEventEquip("/Database.db", ID)
+    hacking = eventConsults.getEventHack("/Database/Database.db", ID)
+    wait = eventConsults.getEventWait("/Database/Database.db", ID)
+    activate = eventConsults.getEventActivate("/Database/Database.db", ID)
+    equip = eventConsults.getEventEquip("/Database/Database.db", ID)
 
     return JSONResponse({
         "status": 200,
@@ -71,11 +71,11 @@ def readFlags(ID: int, request: Request):
 @router.get("/event/readActivated/{ID}")
 def getEventActivated(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
-    activated = eventConsults.getEventActivated("/Database.db", ID)
+    activated = eventConsults.getEventActivated("/Database/Database.db", ID)
 
     if activated:
         return JSONResponse({
@@ -92,12 +92,12 @@ def getEventActivated(ID: int, request: Request):
 @router.get("/event/readRedirect/{ID}")
 def readRedirect(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
 
     # Consult database
 
-    redirectID = eventConsults.getEventRedirectID("/Database.db", ID)
+    redirectID = eventConsults.getEventRedirectID("/Database/Database.db", ID)
 
     return JSONResponse({
         "status": 200,

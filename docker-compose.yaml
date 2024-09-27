@@ -1,0 +1,23 @@
+services:
+  web:
+    build: ./web/
+    ports: 
+     - "7001:80"
+    volumes:
+      - /home/artic/volumes/LSBWEB:/usr/share/nginx/
+    networks:
+      - lsbnet
+    restart: always
+  api:
+    build: ./database/
+    ports: 
+     - "7002:8000"
+    volumes:
+      - /home/artic/volumes/LSBDB:/Database/
+    networks:
+      - lsbnet
+    restart: always
+networks:
+  lsbnet:
+    ipam: bridge
+    

@@ -11,35 +11,35 @@ router = APIRouter()
 @router.post("/event/create/{ID}")
 def createEvent(request: Request, ID: int):
     # Check for errors
-    if ID in eventConsults.getAllIDs("/Database.db"):
+    if ID in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDAlreadyExists("ID already exists")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
             "ID cannot be negative")
 
     # Create event
-    eventActions.createEvent("/Database.db", ID)
+    eventActions.createEvent("/Database/Database.db", ID)
     return JSONResponse(responseHandling.success("Event created"))
 
 
 @router.delete("/event/delete/{ID}")
 def deleteEvent(request: Request, ID: int):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
             "ID cannot be negative")
 
     # Delete event
-    eventActions.deleteEvent("/Database.db", ID)
+    eventActions.deleteEvent("/Database/Database.db", ID)
     return JSONResponse(responseHandling.success("Event deleted"))
 
 
 @router.put("/event/editDescription/{ID}")
 async def editEventName(request: Request, ID: int):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
@@ -53,14 +53,14 @@ async def editEventName(request: Request, ID: int):
         return responseHandling.errorIncorrectParameter(
             "No description in body")
 
-    eventActions.editDescription("/Database.db", ID, body["description"])
+    eventActions.editDescription("/Database/Database.db", ID, body["description"])
     return JSONResponse(responseHandling.success("Description updated"))
 
 
 @router.put("/event/editFlags/{ID}")
 async def editEventFlags(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
@@ -80,7 +80,7 @@ async def editEventFlags(ID: int, request: Request):
         return responseHandling.errorWrongFormatBody("Wait not in body")
 
     # Edit flags on database
-    eventActions.editFlags("/Database.db", ID,
+    eventActions.editFlags("/Database/Database.db", ID,
                            body["hack"],
                            body["equip"],
                            body["activate"],
@@ -92,35 +92,35 @@ async def editEventFlags(ID: int, request: Request):
 @router.put("/event/activate/{ID}")
 def activateEvent(ID: int):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
             "ID cannot be negative")
 
     # Activate event
-    eventActions.setActivated("/Database.db", ID)
+    eventActions.setActivated("/Database/Database.db", ID)
     return responseHandling.success("Event activated")
 
 
 @router.put("/event/deactivate/{ID}")
 def deactivateEvent(ID: int):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
             "ID cannot be negative")
 
     # Activate event
-    eventActions.resetActivated("/Database.db", ID)
+    eventActions.resetActivated("/Database/Database.db", ID)
     return responseHandling.success("Event deactivated")
 
 
 @router.put("/event/editRedirect/{ID}")
 async def editRedirectID(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
@@ -134,7 +134,7 @@ async def editRedirectID(ID: int, request: Request):
         return responseHandling.errorWrongFormatBody("Redirect ID not present")
 
     # Edit redirect Id on database
-    eventActions.editRedirectID("/Database.db", ID, body["redirectID"])
+    eventActions.editRedirectID("/Database/Database.db", ID, body["redirectID"])
 
     return responseHandling.success("Redirect ID updated")
 
@@ -142,7 +142,7 @@ async def editRedirectID(ID: int, request: Request):
 @router.put("/event/editEvent/{ID}")
 async def editEvent(ID: int, request: Request):
     # Check for errors
-    if ID not in eventConsults.getAllIDs("/Database.db"):
+    if ID not in eventConsults.getAllIDs("/Database/Database.db"):
         return responseHandling.errorIDNotPresent("ID not present")
     if ID < 0:
         return responseHandling.errorIncorrectParameter(
@@ -168,7 +168,7 @@ async def editEvent(ID: int, request: Request):
         return responseHandling.errorWrongFormatBody("Activated not in body")
 
     # Edit event on database
-    eventActions.editFullEvent("/Database.db",
+    eventActions.editFullEvent("/Database/Database.db",
                                ID,
                                body["description"],
                                body["hack"],
