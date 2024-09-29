@@ -14,7 +14,7 @@ function logout() {
 
 function handleControlPanelAccess() {
     const characterID = sessionStorage.getItem('characterID');
-    if (characterID != -1) {
+    if (characterID > 100) {
         document.getElementById('buttonControlPanel').style.display = 'none';
     }
     else {
