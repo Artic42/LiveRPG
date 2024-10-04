@@ -4,6 +4,8 @@
         "fastapi",
         "Hackear",
         "Hackeo",
+        "ntfy",
+        "Ntfy",
         "pydantic",
         "Royale",
         "sqlite",
