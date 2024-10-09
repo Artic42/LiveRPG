@@ -44,3 +44,23 @@ def stillAlive(request: Request):
     file = open("/lastAccess", "w")
     file.write(str(value) + "\n")
     file.close()
+    return JSONResponse({
+        "status": 200,
+        "message": "Still alive"
+    })
+
+
+@router.get("/bomb/getStatus")
+def getStatus(request: Request):
+    if os.path.exists("/bombArmed"):
+        return JSONResponse({
+            "status": 200,
+            "message": "Bomb armed",
+            "armed": 1
+        })
+    else:
+        return JSONResponse({
+            "status": 200,
+            "message": "Bomb disarmed",
+            "armed": 0
+        })

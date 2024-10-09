@@ -18,6 +18,7 @@ import routers.informationActions as informationActions
 import routers.informationConsults as informationConsults
 import routers.responseHandling as responseHandling
 import routers.mockBomb as mockBomb
+import routers.transmissior as transmissior
 import databaseManager.userConsults as userConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
@@ -32,6 +33,7 @@ app.include_router(eventActions.router)
 app.include_router(informationActions.router)
 app.include_router(informationConsults.router)
 app.include_router(mockBomb.router)
+app.include_router(transmissior.router)
 
 
 app.add_middleware(
