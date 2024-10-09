@@ -11,6 +11,7 @@ python = "^3.10"
 articlib = "^0.2.3"
 fastapi = "^0.111.1"
 requests = "^2.32.3"
+uvicorn = "^0.31.0"
 
 [tool.poetry.scripts]
 api = "database.API:start"

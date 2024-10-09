@@ -1,4 +1,7 @@
+import os
+import time
 import uvicorn
+import asyncio
 import random
 from fastapi import FastAPI
 from fastapi import Request
@@ -6,6 +9,7 @@ from fastapi import UploadFile
 from fastapi import File
 from fastapi.responses import FileResponse
 from fastapi.responses import JSONResponse
+from contextlib import asynccontextmanager
 import routers.characterActions as characterActions
 import routers.characterConsults as characterConsults
 import routers.eventActions as eventActions
@@ -13,9 +17,12 @@ import routers.eventConsults as eventConsults
 import routers.informationActions as informationActions
 import routers.informationConsults as informationConsults
 import routers.responseHandling as responseHandling
+import routers.mockBomb as mockBomb
+import routers.transmissior as transmissior
 import databaseManager.userConsults as userConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
+import ntfy
 
 app = FastAPI()
 
@@ -25,6 +32,8 @@ app.include_router(eventConsults.router)
 app.include_router(eventActions.router)
 app.include_router(informationActions.router)
 app.include_router(informationConsults.router)
+app.include_router(mockBomb.router)
+app.include_router(transmissior.router)
 
 
 app.add_middleware(
@@ -118,6 +127,36 @@ def rollDice(dice: int):
         "diceResults": diceResults,
         "result": result
     })
+
+
+# Function to run every 10 seconds
+async def runEvery10Seconds():
+    while True:
+        if os.path.exists("/bombArmed"):
+            file = open("/lastAccess", "r")
+            value = int(file.read())
+            file.close()
+            currentTime = int(time.time())
+            if currentTime - value > 10:
+                ntfy.sendExplosionNtfy()
+                os.system("touch /exploded")
+                os.system("rm /bombArmed")
+                os.system("rm /lastAccess")
+        # Add your task logic here
+        await asyncio.sleep(10)
+
+
+# Define the lifespan context manager
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup logic
+    task = asyncio.create_task(runEvery10Seconds())
+    yield
+    # Teardown logic
+    task.cancel()
+    await task
+
+app.router.lifespan_context = lifespan
 
 
 if __name__ == "__main__":
