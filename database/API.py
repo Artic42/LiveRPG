@@ -18,7 +18,7 @@ import routers.informationActions as informationActions
 import routers.informationConsults as informationConsults
 import routers.responseHandling as responseHandling
 import routers.mockBomb as mockBomb
-import routers.transmissior as transmissior
+import routers.transmissor as transmissior
 import databaseManager.userConsults as userConsults
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
