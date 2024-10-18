@@ -201,9 +201,10 @@ function getHackValue(ID){
 getHackValue(characterID);
 document.getElementById('eventNumber').value = 0;
 readEvent();
-checkEventIDChange();
-setInterval(checkEventIDChange, 100);
+// checkEventIDChange();
+// setInterval(checkEventIDChange, 100);
 setInterval(handleWait, 1000);
 document.getElementById("activateButton").addEventListener("click", activateEvent);
 document.getElementById("deactivateButton").addEventListener("click", deactivateEvent);
 document.getElementById("hackButton").addEventListener("click", hack);
+document.getElementById("readButton").addEventListener("click", checkEventIDChange);
